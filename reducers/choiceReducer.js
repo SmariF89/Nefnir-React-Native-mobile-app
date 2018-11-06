@@ -6,18 +6,19 @@ import {
     REMOVE_PARENT_A_CHOICE,
     CLEAR_ALL_PARENT_A_CHOICES,
     GET_PARENT_B_CHOICES,
+    GET_PARENT_CHOICES,
     ADD_PARENT_B_CHOICE,
     REMOVE_PARENT_B_CHOICE,
     CLEAR_ALL_PARENT_B_CHOICES,
     CLEAR_ALL_PARENT_CHOICES
-} from '../constants/choiceConstants'
+} from "../constants/choiceConstants";
 
 import {
     //GET_PARENT_A_NAME,
     SET_PARENT_A_NAME,
     //GET_PARENT_B_NAME,
     SET_PARENT_B_NAME
-} from '../constants/parentConstants'
+} from "../constants/parentConstants";
 
 const initialState = {
     // fetching: false,
@@ -78,6 +79,10 @@ const choiceReducer = (state = initialState, action) => {
 
         case CLEAR_ALL_PARENT_CHOICES:
             return state;
+        case GET_PARENT_CHOICES:
+            return {
+                choices: [...newState.parentA, ...newState.parentB]
+            };
         default:
             return state;
     }

@@ -20,10 +20,10 @@ export const sectionListForm = data => {
                 data: sortedAndKeyedByInital[obj]
             })
     );
-}
+};
 
 export const flatListForm = data => {
     return data
         .map((item, index) => ({ ...item, key: `${index}` }))
         .sort((x, y) => (x.Nafn < y.Nafn ? -1 : 1));
-}
+};
