@@ -25,11 +25,11 @@ const initialState = {
 	allChoices: [],
 	commonChoices: [],
 	parentA: {
-		name: '',
+		name: 'Gunnar',
 		choices: []
 	},
 	parentB: {
-		name: '',
+		name: 'Baldvin',
 		choices: []
 	}
 };

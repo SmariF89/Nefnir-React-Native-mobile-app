@@ -10,11 +10,7 @@ import {
 	FlatList,
 	ActivityIndicator
 } from 'react-native';
-// import RadioForm, {
-// 	RadioButton,
-// 	RadioButtonInput,
-// 	RadioButtonLabel
-// } from 'react-native-simple-radio-button';
+import RadioForm from 'react-native-simple-radio-button';
 
 import ListItem from './ListItem';
 import { sectionListForm } from '../utils/ListUtilities';
@@ -25,8 +21,13 @@ class ParentChoices extends React.Component {
 		super(props);
 		this.state = {
 			filterText: '',
-			isOrderedByCommon: false
+			isOrderedByPopularity: false
 		};
+
+		this.types = [
+			{ label: 'Alphabetically', value: false },
+			{ label: 'Popularity', value: true }
+		];
 	}
 
 	componentDidMount() {
@@ -40,13 +41,14 @@ class ParentChoices extends React.Component {
 
 	render() {
 		const parent = this.props.navigation.state.params;
-		const { filterText, isOrderedByCommon } = this.state;
+		const { filterText, isOrderedByPopularity } = this.state;
 		const { allChoices } = this.props.data.choice;
 		const { parentAChoices, parentBChoices } = this.props;
 		const choiceData = sectionListForm(
 			allChoices.filter(name =>
 				name.Nafn.toLowerCase().includes(filterText.toLowerCase())
-			)
+			),
+			isOrderedByPopularity
 		);
 
 		return (
@@ -68,11 +70,24 @@ class ParentChoices extends React.Component {
 							}
 							value={filterText}
 						/>
+						<RadioForm
+							radio_props={this.types}
+							initial={0}
+							formHorizontal={true}
+							labelHorizontal={true}
+							buttonColor={'#2196f3'}
+							animation={true}
+							onPress={value => {
+								this.setState({ isOrderedByPopularity: value });
+							}}
+						/>
 						<SectionList
 							renderItem={({ item }) => (
 								<ListItem
 									item={item}
-									isOrderedByCommon={isOrderedByCommon}
+									isOrderedByPopularity={
+										isOrderedByPopularity
+									}
 									parent={parent}
 								/>
 							)}

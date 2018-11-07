@@ -1,13 +1,35 @@
-export const sectionListForm = data => {
+export const sectionListForm = (data, isOrderedByPopularity) => {
 	const sortedAndKeyedByInital = data
-		.map((item, index) => ({ ...item, key: item.Nafn }))
-		.sort((x, y) => (x.Nafn < y.Nafn ? -1 : 1))
-		.reduce((acc, obj) => {
-			const initial = obj.Nafn.charAt(0);
-			if (!acc[initial]) {
-				acc[initial] = [];
+		.map(item => ({
+			key: item.Nafn,
+			Nafn: item.Nafn,
+			Fjoldi: parseInt(item.Fjoldi1, 10) + parseInt(item.Fjoldi2, 10)
+		}))
+		.sort((x, y) => {
+			if (isOrderedByPopularity) {
+				return y.Fjoldi - x.Fjoldi;
+			} else {
+				if (x.Nafn < y.Nafn) {
+					return -1;
+				} else {
+					return 1;
+				}
 			}
-			acc[initial].push(obj);
+		})
+		.reduce((acc, obj) => {
+			if (isOrderedByPopularity) {
+				const fKey = obj.Fjoldi;
+				if (!acc[fKey]) {
+					acc[fKey] = [];
+				}
+				acc[fKey].push(obj);
+			} else {
+				const initial = obj.Nafn.charAt(0);
+				if (!acc[initial]) {
+					acc[initial] = [];
+				}
+				acc[initial].push(obj);
+			}
 			return acc;
 		}, {});
 
@@ -22,8 +44,8 @@ export const sectionListForm = data => {
 	);
 };
 
-export const flatListForm = data => {
-	return data
-		.map((item, index) => ({ ...item, key: `${index}` }))
-		.sort((x, y) => (x.Nafn < y.Nafn ? -1 : 1));
-};
+// export const flatListForm = data => {
+// 	return data
+// 		.map((item, index) => ({ ...item, key: `${index}` }))
+// 		.sort((x, y) => (x.Nafn < y.Nafn ? -1 : 1));
+// };

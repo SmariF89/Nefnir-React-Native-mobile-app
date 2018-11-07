@@ -15,7 +15,7 @@ class ListItem extends React.Component {
 	}
 
 	render() {
-		const { item, parent, isOrderedByCommon } = this.props;
+		const { item, parent, isOrderedByPopularity } = this.props;
 		const { parentA, parentB } = this.props.data.choice;
 		let isCandidate = false;
 		if (parentA.name == parent) {
@@ -23,42 +23,20 @@ class ListItem extends React.Component {
 		} else if (parentB.name == parent) {
 			isCandidate = parentB.choices.includes(item.Nafn);
 		}
-		if (isOrderedByCommon) {
-			return (
-				<View style={styles.infoContainer}>
-					<CheckBox
-						style={styles.check}
-						key={item.key}
-						onValueChange={() =>
-							this.toggleChoice(parent, item.Nafn)
-						}
-						value={isCandidate}
-					/>
-					<Text key={item.key} style={styles.text}>
-						{`${item.Nafn} \nFyrsta nafn: ${
-							item.Fjoldi1
-						} einstaklingar\nAnnað nafn: ${
-							item.Fjoldi2
-						} einstaklingar`}
-					</Text>
-				</View>
-			);
-		} else {
-			return (
-				<View style={styles.infoContainer}>
-					<CheckBox
-						style={styles.check}
-						onValueChange={() =>
-							this.toggleChoice(parent, item.Nafn)
-						}
-						value={isCandidate}
-					/>
-					<Text key={item.key} style={styles.text}>
-						{`${item.Nafn}`}
-					</Text>
-				</View>
-			);
-		}
+		return (
+			<View style={styles.infoContainer}>
+				<CheckBox
+					style={styles.check}
+					onValueChange={() => this.toggleChoice(parent, item.Nafn)}
+					value={isCandidate}
+				/>
+				<Text key={item.key} style={styles.text}>
+					{isOrderedByPopularity
+						? `${item.Nafn} - ${item.Fjoldi} individuals\n`
+						: `${item.Nafn}`}
+				</Text>
+			</View>
+		);
 	}
 }
 
