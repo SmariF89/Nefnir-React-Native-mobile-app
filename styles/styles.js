@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
 
 const win = Dimensions.get("window");
-const halfWin = win / 2;
 
 export default StyleSheet.create({
     // -- Container Styles

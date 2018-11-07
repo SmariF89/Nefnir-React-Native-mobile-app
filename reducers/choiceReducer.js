@@ -3,7 +3,8 @@ import {
 	ADD_PARENT_A_CHOICE,
 	ADD_IF_COMMON_CHOICE,
 	ADD_PARENT_B_CHOICE,
-	CLEAR_ALL_PARENT_CHOICES
+	CLEAR_ALL_PARENT_CHOICES,
+	GET_ALL_COMBINATION_IDEAS
 } from '../constants/choiceConstants';
 
 import {
@@ -14,7 +15,10 @@ import {
 import { RESET_APP } from '../constants/AppConstants';
 
 const initialState = {
+	choicesLoaded: false,
+	combinationsLoaded: false,
 	allChoices: [],
+	allCombinationsIdeas: [],
 	commonChoices: [],
 	parentA: {
 		name: 'Dvergur',
@@ -35,9 +39,16 @@ const choiceReducer = (state = initialState, action) => {
 		case SET_PARENT_B_NAME:
 			newState.parentB.name = action.payload;
 			return newState;
+		case GET_ALL_COMBINATION_IDEAS:
+			return {
+				...state,
+				combinationsLoaded: true,
+				allCombinationsIdeas: action.payload
+			};
 		case GET_ALL_CHOICES:
 			return {
 				...state,
+				choicesLoaded: true,
 				allChoices: action.payload
 			};
 		case ADD_PARENT_A_CHOICE:
