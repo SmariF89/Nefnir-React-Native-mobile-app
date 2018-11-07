@@ -23,7 +23,7 @@ class ListItem extends React.Component {
 	}
 
 	render() {
-		const { item, parent } = this.props;
+		const { item, parent, showPopInfo } = this.props;
 		const { parentA, parentB } = this.props.data.choice;
 		let isCandidate = false;
 		if (parentA.name == parent) {
@@ -42,9 +42,11 @@ class ListItem extends React.Component {
 					activeOpacity={0.5}
 					onPress={() => this.toggleChoice(parent, item.Nafn)}>
 					<Text key={item.key} style={styles.text}>
-						{`${item.Nafn}\nFirst name: ${
-							item.Fjoldi1
-						} people\nSecond name: ${item.Fjoldi2} people\n`}
+						{showPopInfo
+							? `${item.Nafn}\nFirst name: ${
+									item.Fjoldi1
+							  } people\nSecond name: ${item.Fjoldi2} people`
+							: `${item.Nafn}`}
 					</Text>
 				</TouchableOpacity>
 			</View>
