@@ -6,7 +6,6 @@ import {
     REMOVE_PARENT_A_CHOICE,
     CLEAR_ALL_PARENT_A_CHOICES,
     GET_PARENT_B_CHOICES,
-    GET_PARENT_CHOICES,
     ADD_PARENT_B_CHOICE,
     REMOVE_PARENT_B_CHOICE,
     CLEAR_ALL_PARENT_B_CHOICES,
@@ -14,9 +13,9 @@ import {
 } from "../constants/choiceConstants";
 
 import {
-    //GET_PARENT_A_NAME,
+    // GET_PARENT_A_NAME,
     SET_PARENT_A_NAME,
-    //GET_PARENT_B_NAME,
+    // GET_PARENT_B_NAME,
     SET_PARENT_B_NAME
 } from "../constants/parentConstants";
 
@@ -60,7 +59,16 @@ const choiceReducer = (state = initialState, action) => {
         case GET_PARENT_A_CHOICES:
             return state;
         case ADD_PARENT_A_CHOICE:
-            newState.parentA.choices.push(action.payload);
+            if (state.parentA.choices.includes(action.payload)) {
+                newState.parentA.choices = newState.parentA.choices.filter(
+                    name => name != action.payload
+                );
+            } else {
+                newState.parentA.choices = [
+                    ...state.parentA.choices,
+                    action.payload
+                ];
+            }
             return newState;
         case REMOVE_PARENT_A_CHOICE:
             return state;
@@ -70,7 +78,16 @@ const choiceReducer = (state = initialState, action) => {
         case GET_PARENT_B_CHOICES:
             return state;
         case ADD_PARENT_B_CHOICE:
-            newState.parentB.choices.push(action.payload);
+            if (state.parentB.choices.includes(action.payload)) {
+                newState.parentB.choices = newState.parentB.choices.filter(
+                    name => name != action.payload
+                );
+            } else {
+                newState.parentB.choices = [
+                    ...state.parentB.choices,
+                    action.payload
+                ];
+            }
             return newState;
         case REMOVE_PARENT_B_CHOICE:
             return state;
@@ -79,10 +96,6 @@ const choiceReducer = (state = initialState, action) => {
 
         case CLEAR_ALL_PARENT_CHOICES:
             return state;
-        case GET_PARENT_CHOICES:
-            return {
-                choices: [...newState.parentA, ...newState.parentB]
-            };
         default:
             return state;
     }
