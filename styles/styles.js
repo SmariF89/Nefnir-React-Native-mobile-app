@@ -74,6 +74,10 @@ export default StyleSheet.create({
     borderRadius: 6,
     backgroundColor: '#D97E00'
   },
+  rightSwipeItem: {
+    flex: 1,
+    paddingLeft: 20
+  },
 
     // -- Text Styles
   textAlignLeft: {
