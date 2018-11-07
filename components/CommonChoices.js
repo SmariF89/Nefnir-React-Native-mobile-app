@@ -1,27 +1,50 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { connect } from "react-redux";
+import { getSelectedChoices } from "../actions/choiceActions";
 
-export default class CommonChoices extends React.Component {
+class CommonChoices extends React.Component {
     constructor(props) {
         super(props);
+        console.log("props inside CommonChoices: ", this.props);
+
+        this.state = {
+            choices: []
+        };
+    }
+
+    componentDidMount() {
+        const { allChoices } = this.props.data.choice;
+        const { getSelectedChoices } = this.props;
+        getSelectedChoices();
+        if (allChoices.length === 0) {
+            getSelectedChoices();
+        }
     }
 
     render() {
+        // const listItems = this.state.choices.map(item => <Text>{item}</Text>);
+
         return (
             <View>
-                <Text>COMMON CHOICES</Text>
                 <TouchableOpacity
                     style={styles.btn}
                     activeOpacity={0.5}
                     onPress={() => this.props.navigation.goBack(null)}
                 >
-                    <Text
-                        style={styles.btnText}
-                    >GO BACK</Text>
+                    <Text style={styles.btnText}>GO BACK</Text>
                 </TouchableOpacity>
             </View>
         );
     }
+}
+
+const mapStateToProps = state => {
+    console.log("map state to props: ", state);
+
+    return {
+        data: state
+    };
 };
 
 const styles = StyleSheet.create({
@@ -34,12 +57,17 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         borderWidth: 1,
         borderRadius: 10,
-        borderColor: 'gray',
-        backgroundColor: '#649cef'
+        borderColor: "gray",
+        backgroundColor: "#649cef"
     },
     btnText: {
-        textAlign: 'center',
+        textAlign: "center",
         fontSize: 18,
-        color: 'white'
+        color: "white"
     }
 });
+
+export default connect(
+    mapStateToProps,
+    { getSelectedChoices }
+)(CommonChoices);
