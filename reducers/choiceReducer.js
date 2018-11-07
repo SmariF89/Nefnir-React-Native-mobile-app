@@ -1,30 +1,19 @@
 import {
 	GET_ALL_CHOICES,
-	GET_CHOICES_BY_LETTER,
-	GET_PARENT_A_CHOICES,
 	ADD_PARENT_A_CHOICE,
 	ADD_IF_COMMON_CHOICE,
-	REMOVE_PARENT_A_CHOICE,
-	CLEAR_ALL_PARENT_A_CHOICES,
-	GET_PARENT_B_CHOICES,
 	ADD_PARENT_B_CHOICE,
-	REMOVE_PARENT_B_CHOICE,
-	CLEAR_ALL_PARENT_B_CHOICES,
 	CLEAR_ALL_PARENT_CHOICES
 } from '../constants/choiceConstants';
 
 import {
-	// GET_PARENT_A_NAME,
 	SET_PARENT_A_NAME,
-	// GET_PARENT_B_NAME,
 	SET_PARENT_B_NAME
 } from '../constants/parentConstants';
 
 import { RESET_APP } from '../constants/AppConstants';
 
 const initialState = {
-	// fetching: false,
-	// error: undefined,
 	allChoices: [],
 	commonChoices: [],
 	parentA: {
@@ -40,27 +29,17 @@ const initialState = {
 const choiceReducer = (state = initialState, action) => {
 	let newState = { ...state };
 	switch (action.type) {
-		// case GET_PARENT_A_NAME:
-		//     return state.parentA.name;
 		case SET_PARENT_A_NAME:
 			newState.parentA.name = action.payload;
 			return newState;
-		// case GET_PARENT_B_NAME:
-		//     return state.parentB.name;
 		case SET_PARENT_B_NAME:
 			newState.parentB.name = action.payload;
 			return newState;
-
 		case GET_ALL_CHOICES:
 			return {
 				...state,
 				allChoices: action.payload
 			};
-		case GET_CHOICES_BY_LETTER:
-			return state;
-
-		case GET_PARENT_A_CHOICES:
-			return state;
 		case ADD_PARENT_A_CHOICE:
 			if (state.parentA.choices.includes(action.payload)) {
 				newState.parentA.choices = newState.parentA.choices.filter(
@@ -78,23 +57,11 @@ const choiceReducer = (state = initialState, action) => {
 				state.parentA.choices.includes(action.payload) &&
 				state.parentB.choices.includes(action.payload)
 			) {
-				console.log('adding to common!!');
-				/*newState.commonChoices = [
-                    ...newState.commonChoices,
-                    action.payload
-                ];*/
 				return {
 					...state,
 					commonChoices: [...newState.commonChoices, action.payload]
 				};
 			}
-		case REMOVE_PARENT_A_CHOICE:
-			return state;
-		case CLEAR_ALL_PARENT_A_CHOICES:
-			return state;
-
-		case GET_PARENT_B_CHOICES:
-			return state;
 		case ADD_PARENT_B_CHOICE:
 			if (state.parentB.choices.includes(action.payload)) {
 				newState.parentB.choices = newState.parentB.choices.filter(
@@ -107,10 +74,6 @@ const choiceReducer = (state = initialState, action) => {
 				];
 			}
 			return newState;
-		case REMOVE_PARENT_B_CHOICE:
-			return state;
-		case CLEAR_ALL_PARENT_B_CHOICES:
-			return state;
 		case CLEAR_ALL_PARENT_CHOICES:
 			return state;
 		case RESET_APP:
