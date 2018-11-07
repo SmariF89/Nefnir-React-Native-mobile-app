@@ -21,60 +21,65 @@ class Home extends React.Component {
       <View style={styles.container}>
         <View style={styles.logoContainer}>
           <Image source={require('../assets/images/name-logo.png')} />
-          <Text>!Insert APP name here!</Text>
         </View>
         <View style={styles.btnContainer}>
           <TouchableOpacity
             style={styles.btn}
             activeOpacity={0.5}
             onPress={() =>
-              (missingNames
-                ? this.onPress('Options')
-                : this.onPress('ChoiceSelection', parentA.name))}
-          >
+                            (missingNames
+                                ? this.onPress('Options')
+                                : this.onPress(
+                                      'ChoiceSelection',
+                                      parentA.name
+                                  ))}
+                    >
             <Text style={styles.btnText}>
               {parentA.name === ''
-                ? 'Select name for Parent #1'
-                : `${parentA.name}'s choices`}
+                                ? 'Select name for Parent #1'
+                                : `${parentA.name}'s choices`}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.btn}
             activeOpacity={0.5}
             onPress={() =>
-              (missingNames
-                ? this.onPress('Options')
-                : this.onPress('ChoiceSelection', parentB.name))}
-          >
+                            (missingNames
+                                ? this.onPress('Options')
+                                : this.onPress(
+                                      'ChoiceSelection',
+                                      parentB.name
+                                  ))}
+                    >
             <Text style={styles.btnText}>
               {parentB.name === ''
-                ? 'Select name for Parent #2'
-                : `${parentB.name}'s choices`}
+                                ? 'Select name for Parent #2'
+                                : `${parentB.name}'s choices`}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.btn}
             activeOpacity={0.5}
             onPress={() => this.onPress('Commons')}
-          >
+                    >
             <Text style={styles.btnText}>COMMON CHOICES</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.btn}
             activeOpacity={0.5}
             onPress={() => this.onPress('Options')}
-          >
+                    >
             <Text style={styles.btnText}>Settings</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.btn}
             activeOpacity={0.5}
             onPress={() =>
-              console.log(
-                this.props.data.choice.parentA.choices,
-                this.props.data.choice.parentB.choices
-              )}
-          >
+                            console.log(
+                                this.props.data.choice.parentA.choices,
+                                this.props.data.choice.parentB.choices
+                            )}
+                    >
             <Text style={styles.btnText}>RESET</Text>
           </TouchableOpacity>
         </View>
@@ -83,7 +88,7 @@ class Home extends React.Component {
             style={styles.btn}
             activeOpacity={0.5}
             onPress={() => this.onPress('About')}
-          >
+                    >
             <Text style={styles.btnText}>ABOUT</Text>
           </TouchableOpacity>
         </View>

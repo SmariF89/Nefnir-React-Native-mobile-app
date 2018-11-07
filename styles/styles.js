@@ -30,7 +30,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
     width: '100%',
-    marginBottom: 36
+    marginTop: 28,
+    marginBottom: 28
   },
   myChoices: {
     flex: 1,
@@ -79,7 +80,20 @@ export default StyleSheet.create({
     paddingLeft: 20
   },
 
+    // -- checkColours
+  isCandidate: {
+    backgroundColor: '#D6FFA4'
+  },
+
     // -- Text Styles
+
+  text: {
+    flex: 8,
+    fontSize: 18,
+    margin: 3,
+    textAlign: 'left',
+    justifyContent: 'center'
+  },
   textAlignLeft: {
     textAlign: 'left',
     fontSize: 18
