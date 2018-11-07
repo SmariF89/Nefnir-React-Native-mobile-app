@@ -7,7 +7,7 @@ class ListItem extends React.Component {
     toggleChoice(parent, name) {
         const { parentA, parentB } = this.props.data.choice;
         const { addParentAChoice, addParentBChoice } = this.props;
-        console.warn(parent);
+        //console.warn(parent);
         if (parentA.name === parent) {
             if (!parentA.choices.includes(name)) {
                 addParentAChoice(name);
