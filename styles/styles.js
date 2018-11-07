@@ -1,13 +1,13 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-	// -- Container Styles
-	container: {
-		flex: 1,
-		alignItems: 'center',
-		width: '100%',
-		backgroundColor: '#E4F0FB'
-	},
+    // -- Container Styles
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    width: '100%',
+    backgroundColor: '#E4F0FB'
+  },
   logoContainer: {
     flex: 4,
     justifyContent: 'center',
@@ -22,6 +22,10 @@ export default StyleSheet.create({
     flex: 8,
     justifyContent: 'center',
         // alignItems: 'center',
+    width: '80%'
+  },
+  nameListContainer: {
+    flex: 8,
     width: '80%'
   },
   aboutContainer: {
@@ -101,6 +105,10 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     color: 'white'
+  },
+  textAlignCenterBig: {
+    textAlign: 'center',
+    fontSize: 32
   },
   textAlignCenter: {
     textAlign: 'center',

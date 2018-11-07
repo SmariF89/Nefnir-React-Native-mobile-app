@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 import {
     View,
     Text,
@@ -12,30 +12,30 @@ import {
 } from 'react-native'
 import Swipeable from 'react-native-swipeable'
 
-import ListItem from './ListItem';
-import { sectionListForm } from '../utils/ListUtilities';
-import { getAllChoices } from '../actions/choiceActions';
+import ListItem from './ListItem'
+import { sectionListForm } from '../utils/ListUtilities'
+import { getAllChoices } from '../actions/choiceActions'
 
-import styles from '../styles/styles';
+import styles from '../styles/styles'
 
 class ParentChoices extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			filterText: '',
-			isOrderedByCommon: false,
-			rightContentWidth: Dimensions.get('window').width
-		};
-	}
+  constructor (props) {
+    super(props)
+    this.state = {
+      filterText: '',
+      isOrderedByCommon: false,
+      rightContentWidth: Dimensions.get('window').width
+    }
+  }
 
-	componentDidMount() {
-		const { allChoices } = this.props.data.choice;
-		const { getAllChoices } = this.props;
-		getAllChoices();
-		if (allChoices.length === 0) {
-			getAllChoices();
-		}
-	}
+  componentDidMount () {
+    const { allChoices } = this.props.data.choice
+    const { getAllChoices } = this.props
+    getAllChoices()
+    if (allChoices.length === 0) {
+      getAllChoices()
+    }
+  }
 
   render () {
     const parent = this.props.navigation.state.params
@@ -47,15 +47,25 @@ class ParentChoices extends React.Component {
                 name.Nafn.toLowerCase().includes(filterText.toLowerCase())
             )
         )
+
+    isEmptyList = () => {
+      return (
+        <View>
+          <Text style={styles.textAlignCenter}>
+                        No name was fount
+                    </Text>
+        </View>
+      )
+    }
     console.log('rightContentWidth: ', rightContentWidth)
     return (
       <View style={styles.container}>
         <View style={styles.logoContainer}>
-          <Text style={styles.textAlignCenter}>
+          <Text style={styles.textAlignCenterBig}>
             {parent}'s choices
                     </Text>
         </View>
-        <View style={styles.commonContainer}>
+        <View style={styles.nameListContainer}>
           <Swipeable
             rightButtonWidth={rightContentWidth}
             rightButtons={[
@@ -76,6 +86,8 @@ class ParentChoices extends React.Component {
                     renderItem={({ item }) => (
                         <Text>{item}</Text>
                                         )}
+                    ListEmptyComponent={this.isEmptyList}
+                    removeClippedSubviews
                                     />
                 </View>
               </View>
@@ -130,14 +142,11 @@ class ParentChoices extends React.Component {
 }
 
 const mapStateToProps = state => {
-	return {
-		data: state,
-		parentAChoices: state.choice.parentA.choices,
-		parentBChoices: state.choice.parentB.choices
-	};
-};
+  return {
+    data: state,
+    parentAChoices: state.choice.parentA.choices,
+    parentBChoices: state.choice.parentB.choices
+  }
+}
 
-export default connect(
-	mapStateToProps,
-	{ getAllChoices }
-)(ParentChoices);
+export default connect(mapStateToProps, { getAllChoices })(ParentChoices)
