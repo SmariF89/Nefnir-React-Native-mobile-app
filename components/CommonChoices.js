@@ -1,12 +1,10 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, FlatList } from "react-native";
 import { connect } from "react-redux";
-import { getSelectedChoices } from "../actions/choiceActions";
 
 class CommonChoices extends React.Component {
     constructor(props) {
         super(props);
-        console.log("props inside CommonChoices: ", this.props);
 
         this.state = {
             choices: []
@@ -14,19 +12,23 @@ class CommonChoices extends React.Component {
     }
 
     componentDidMount() {
-        const { allChoices } = this.props.data.choice;
-        const { getSelectedChoices } = this.props;
-        getSelectedChoices();
-        if (allChoices.length === 0) {
-            getSelectedChoices();
-        }
+        this.setState({choices: this.props.data.choice.commonChoices});
     }
 
     render() {
-        // const listItems = this.state.choices.map(item => <Text>{item}</Text>);
 
         return (
             <View>
+                <Text style = {styles.TitleToCommonChoices}>
+                    Here are the names you both agreed on
+                </Text>
+                <View >
+                      <FlatList
+                          data={this.state.choices}
+                          renderItem={({ item }) => <Text style = {styles.commonChoiceText}>{item}</Text>}
+                      />
+                </View>
+
                 <TouchableOpacity
                     style={styles.btn}
                     activeOpacity={0.5}
@@ -40,8 +42,6 @@ class CommonChoices extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log("map state to props: ", state);
-
     return {
         data: state
     };
@@ -64,10 +64,30 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 18,
         color: "white"
+    },
+    commonChoiceText: {
+        fontSize: 28,
+        textAlign: "center",
+        marginBottom: 5,
+        borderWidth: 1,
+        borderRadius: 2,
+        borderColor: '#ddd',
+        borderBottomWidth: 0,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2
+    },
+    TitleToCommonChoices: {
+        fontSize: 28,
+        textAlign: "center",
+        marginBottom: 40,
+        color: "white",
+        backgroundColor: "#649cef"
     }
 });
 
 export default connect(
     mapStateToProps,
-    { getSelectedChoices }
+    null
 )(CommonChoices);
