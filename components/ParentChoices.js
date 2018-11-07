@@ -1,5 +1,5 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
 import {
     View,
     Text,
@@ -11,36 +11,31 @@ import {
     Dimensions
 } from 'react-native'
 import Swipeable from 'react-native-swipeable'
-// import RadioForm, {
-// 	RadioButton,
-// 	RadioButtonInput,
-// 	RadioButtonLabel
-// } from 'react-native-simple-radio-button';
 
-import ListItem from './ListItem'
-import { sectionListForm } from '../utils/ListUtilities'
-import { getAllChoices } from '../actions/choiceActions'
+import ListItem from './ListItem';
+import { sectionListForm } from '../utils/ListUtilities';
+import { getAllChoices } from '../actions/choiceActions';
 
-import styles from '../styles/styles'
+import styles from '../styles/styles';
 
 class ParentChoices extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      filterText: '',
-      isOrderedByCommon: false,
-      rightContentWidth: Dimensions.get('window').width
-    }
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			filterText: '',
+			isOrderedByCommon: false,
+			rightContentWidth: Dimensions.get('window').width
+		};
+	}
 
-  componentDidMount () {
-    const { allChoices } = this.props.data.choice
-    const { getAllChoices } = this.props
-    getAllChoices()
-    if (allChoices.length === 0) {
-      getAllChoices()
-    }
-  }
+	componentDidMount() {
+		const { allChoices } = this.props.data.choice;
+		const { getAllChoices } = this.props;
+		getAllChoices();
+		if (allChoices.length === 0) {
+			getAllChoices();
+		}
+	}
 
   render () {
     const parent = this.props.navigation.state.params
@@ -135,11 +130,14 @@ class ParentChoices extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {
-    data: state,
-    parentAChoices: state.choice.parentA.choices,
-    parentBChoices: state.choice.parentB.choices
-  }
-}
+	return {
+		data: state,
+		parentAChoices: state.choice.parentA.choices,
+		parentBChoices: state.choice.parentB.choices
+	};
+};
 
-export default connect(mapStateToProps, { getAllChoices })(ParentChoices)
+export default connect(
+	mapStateToProps,
+	{ getAllChoices }
+)(ParentChoices);

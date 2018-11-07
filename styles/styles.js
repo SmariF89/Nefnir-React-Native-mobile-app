@@ -1,14 +1,13 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    // -- Container Styles
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    width: '100%',
-    backgroundColor: '#E4F0FB'
-  },
-
+	// -- Container Styles
+	container: {
+		flex: 1,
+		alignItems: 'center',
+		width: '100%',
+		backgroundColor: '#E4F0FB'
+	},
   logoContainer: {
     flex: 4,
     justifyContent: 'center',
