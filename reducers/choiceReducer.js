@@ -3,6 +3,7 @@ import {
     GET_CHOICES_BY_LETTER,
     GET_PARENT_A_CHOICES,
     ADD_PARENT_A_CHOICE,
+    ADD_IF_COMMON_CHOICE,
     REMOVE_PARENT_A_CHOICE,
     CLEAR_ALL_PARENT_A_CHOICES,
     GET_PARENT_B_CHOICES,
@@ -19,17 +20,19 @@ import {
     SET_PARENT_B_NAME
 } from '../constants/parentConstants'
 
+import { RESET_APP } from '../constants/AppConstants'
+
 const initialState = {
     // fetching: false,
     // error: undefined,
   allChoices: [],
   commonChoices: [],
   parentA: {
-    name: 'Nonni',
+    name: '',
     choices: []
   },
   parentB: {
-    name: 'Manna',
+    name: '',
     choices: []
   }
 }
@@ -59,7 +62,6 @@ const choiceReducer = (state = initialState, action) => {
     case GET_PARENT_A_CHOICES:
       return state
     case ADD_PARENT_A_CHOICE:
-      console.log('is running')
       if (state.parentA.choices.includes(action.payload)) {
         newState.parentA.choices = newState.parentA.choices.filter(
                     name => name != action.payload
@@ -71,6 +73,21 @@ const choiceReducer = (state = initialState, action) => {
         ]
       }
       return newState
+    case ADD_IF_COMMON_CHOICE:
+      if (
+                state.parentA.choices.includes(action.payload) &&
+                state.parentB.choices.includes(action.payload)
+            ) {
+        console.log('adding to common!!')
+                /* newState.commonChoices = [
+                  ...newState.commonChoices,
+                  action.payload
+              ]; */
+        return {
+          ...state,
+          commonChoices: [...newState.commonChoices, action.payload]
+        }
+      }
     case REMOVE_PARENT_A_CHOICE:
       return state
     case CLEAR_ALL_PARENT_A_CHOICES:
@@ -99,6 +116,20 @@ const choiceReducer = (state = initialState, action) => {
       return state
     default:
       return state
+
+    case RESET_APP:
+      return {
+        ...state,
+        commonChoices: [],
+        parentA: {
+          name: '',
+          choices: []
+        },
+        parentB: {
+          name: '',
+          choices: []
+        }
+      }
   }
 }
 

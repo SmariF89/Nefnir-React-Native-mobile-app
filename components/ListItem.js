@@ -1,11 +1,5 @@
 import React from 'react'
-import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    CheckBox
-} from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { addParentAChoice, addParentBChoice } from '../actions/choiceActions'
 
@@ -16,6 +10,7 @@ class ListItem extends React.Component {
     const { parentA, parentB } = this.props.data.choice
     const { addParentAChoice, addParentBChoice } = this.props
         // console.warn(parent);
+
     if (parentA.name === parent) {
       addParentAChoice(name)
       console.log(parentA.choices)
@@ -33,27 +28,6 @@ class ListItem extends React.Component {
     } else if (parentB.name == parent) {
       isCandidate = parentB.choices.includes(item.Nafn)
     }
-
-        /*
-    <CheckBox
-        key={item.key}
-        onValueChange={() => this.toggleChoice(parent, item.Nafn)}
-        value={isCandidate}
-    />
-    <Text key={item.key} style={styles.text}>
-        {`${item.Nafn} \nFyrsta nafn: ${item.Fjoldi1} einstaklingar\nAnnað nafn: ${item.Fjoldi2} einstaklingar`}
-    </Text>
-
-    <CheckBox
-        style={styles.check}
-        key={item.key + '1'}
-        onValueChange={() => this.toggleChoice(parent, item.Nafn)}
-        value={isCandidate}
-     />
-    <Text key={item.key} style={styles.text}>
-        {`${item.Nafn}`}
-    </Text>
-    */
 
     if (isOrderedByCommon) {
       return (

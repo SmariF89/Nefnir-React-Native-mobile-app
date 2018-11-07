@@ -4,11 +4,11 @@ import {
     View,
     Text,
     TextInput,
+    TouchableOpacity,
     SectionList,
     FlatList,
     ActivityIndicator,
-    Dimensions,
-    TouchableOpacity
+    Dimensions
 } from 'react-native'
 import Swipeable from 'react-native-swipeable'
 // import RadioForm, {
