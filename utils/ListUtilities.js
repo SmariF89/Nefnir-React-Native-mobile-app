@@ -49,7 +49,6 @@ export const sectionListFormCombos = data => {
 			})
 	);
 
-	//console.log(x);
 	return x;
 };
 

@@ -14,7 +14,13 @@ import Swipeable from 'react-native-swipeable';
 
 import ListItem from './ListItem';
 import { sectionListForm } from '../utils/ListUtilities';
-import { getAllChoices } from '../actions/choiceActions';
+import {
+	getAllChoices,
+	removeParentAChoice,
+	removeParentBChoice,
+	addParentAChoice,
+	addParentBChoice
+} from '../actions/choiceActions';
 
 import styles from '../styles/styles';
 
@@ -49,7 +55,12 @@ class ParentChoices extends React.Component {
 
 		// Selected choices of both parents are fetched, then the parent variable
 		// is used to distinct between which one is used.
-		const { parentAChoices, parentBChoices } = this.props;
+		const {
+			parentAChoices,
+			parentBChoices,
+			addParentAChoice,
+			addParentBChoice
+		} = this.props;
 
 		// All of the names fetched from the state, filtered and reformed to fit
 		// the SectionList's requirements.
@@ -63,12 +74,12 @@ class ParentChoices extends React.Component {
 		return (
 			<View style={styles.container}>
 				<View style={styles.logoContainer}>
-					<Text style={styles.textAlignCenter}>
+					<Text style={styles.textAlignCenterBig}>
 						{parent}
 						's choices
 					</Text>
 				</View>
-				<View style={styles.commonContainer}>
+				<View style={styles.nameListContainer}>
 					<Swipeable
 						rightButtonWidth={rightContentWidth}
 						rightButtons={[
@@ -86,7 +97,31 @@ class ParentChoices extends React.Component {
 												: parentBChoices
 										}
 										renderItem={({ item }) => (
-											<Text>{item}</Text>
+											<View style={styles.myChoicesItem}>
+												<Text
+													style={
+														styles.myChoicesItemName
+													}>
+													{item}
+												</Text>
+												<TouchableOpacity
+													onPress={() => {
+														parent ==
+														this.props.data.choice
+															.parentA.name
+															? addParentAChoice(
+																	item
+															  )
+															: addParentBChoice(
+																	item
+															  );
+													}}
+													style={
+														styles.myChoicesItemButton
+													}>
+													<Text>remove</Text>
+												</TouchableOpacity>
+											</View>
 										)}
 									/>
 								</View>
@@ -100,8 +135,7 @@ class ParentChoices extends React.Component {
 								underlineColorAndroid={'rgba(0,0,0,0)'}
 								onChangeText={text =>
 									this.setState({
-										filterText: text,
-										filter: true
+										filterText: text
 									})
 								}
 								value={filterText}
@@ -150,5 +184,5 @@ const mapStateToProps = state => {
 
 export default connect(
 	mapStateToProps,
-	{ getAllChoices }
+	{ getAllChoices, addParentAChoice, addParentBChoice }
 )(ParentChoices);
