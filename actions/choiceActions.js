@@ -1,6 +1,7 @@
 import {
     GET_ALL_CHOICES,
     GET_PARENT_CHOICES,
+    ADD_IF_COMMON_CHOICE,
     // GET_CHOICES_BY_LETTER,
     // GET_PARENT_A_CHOICES,
     ADD_PARENT_A_CHOICE,
@@ -38,6 +39,14 @@ export const getAllChoices = () => {
     };
 };
 
+export const addIfCommon = choice => {
+  console.log("addIfCommon(payload): ", choice);
+  return {
+    type: ADD_IF_COMMON_CHOICE,
+    payload: choice
+  }
+}
+
 export const getSelectedChoices = choices => {
     return {
         type: GET_PARENT_CHOICES,
@@ -46,6 +55,7 @@ export const getSelectedChoices = choices => {
 };
 
 export const addParentAChoice = choice => {
+  console.log("addparentAChoice(payload): ", choice);
     return {
         type: ADD_PARENT_A_CHOICE,
         payload: choice

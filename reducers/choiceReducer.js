@@ -3,6 +3,7 @@ import {
     GET_CHOICES_BY_LETTER,
     GET_PARENT_A_CHOICES,
     ADD_PARENT_A_CHOICE,
+    ADD_IF_COMMON_CHOICE,
     REMOVE_PARENT_A_CHOICE,
     CLEAR_ALL_PARENT_A_CHOICES,
     GET_PARENT_B_CHOICES,
@@ -72,6 +73,18 @@ const choiceReducer = (state = initialState, action) => {
                 ];
             }
             return newState;
+        case ADD_IF_COMMON_CHOICE:
+            if(state.parentA.choices.includes(action.payload) && state.parentB.choices.includes(action.payload)) {
+                console.log("adding to common!!");
+                /*newState.commonChoices = [
+                    ...newState.commonChoices,
+                    action.payload
+                ];*/
+                return {
+                    ...state,
+                    commonChoices: [...newState.commonChoices, action.payload]
+                }
+            }
         case REMOVE_PARENT_A_CHOICE:
             return state;
         case CLEAR_ALL_PARENT_A_CHOICES:

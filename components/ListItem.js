@@ -1,13 +1,15 @@
 import React from "react";
 import { View, Text, StyleSheet, CheckBox } from "react-native";
 import { connect } from "react-redux";
-import { addParentAChoice, addParentBChoice } from "../actions/choiceActions";
+import { addParentAChoice, addParentBChoice, addIfCommon } from "../actions/choiceActions";
 
 class ListItem extends React.Component {
     toggleChoice(parent, name) {
         const { parentA, parentB } = this.props.data.choice;
+
         const { addParentAChoice, addParentBChoice } = this.props;
         //console.warn(parent);
+
         if (parentA.name === parent) {
             addParentAChoice(name);
         } else if (parentB.name === parent) {
@@ -100,6 +102,7 @@ export default connect(
     mapStateToProps,
     {
         addParentAChoice,
-        addParentBChoice
+        addParentBChoice,
+        addIfCommon
     }
 )(ListItem);
