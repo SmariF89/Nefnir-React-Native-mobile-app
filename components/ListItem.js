@@ -9,13 +9,9 @@ class ListItem extends React.Component {
         const { addParentAChoice, addParentBChoice } = this.props;
         //console.warn(parent);
         if (parentA.name === parent) {
-            if (!parentA.choices.includes(name)) {
-                addParentAChoice(name);
-            }
+            addParentAChoice(name);
         } else if (parentB.name === parent) {
-            if (!parentB.choices.includes(name)) {
-                addParentBChoice(name);
-            }
+            addParentBChoice(name);
         }
     }
 

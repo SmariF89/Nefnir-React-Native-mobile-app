@@ -20,6 +20,8 @@ import {
     SET_PARENT_B_NAME
 } from "../constants/parentConstants";
 
+import { RESET_APP } from "../constants/AppConstants";
+
 export const getAllChoices = () => {
     //console.log("getAllChoices");
     return async dispatch => {
@@ -70,6 +72,14 @@ export const setParentBName = name => {
     return {
         type: SET_PARENT_B_NAME,
         payload: name
+    };
+};
+
+export const resetAPP = () => {
+    console.log("ACTION: reset");
+    return {
+        type: RESET_APP,
+        payload: ""
     };
 };
 
