@@ -16,12 +16,10 @@ class Home extends React.Component {
 	render() {
 		const { parentA, parentB } = this.props.data.choice;
 		const missingNames = parentA.name === '' || parentB.name === '';
-		console.log(missingNames);
 		return (
 			<View style={styles.container}>
 				<View style={styles.logoContainer}>
 					<Image source={require('../assets/images/name-logo.png')} />
-					<Text>!Insert APP name here!</Text>
 				</View>
 				<View style={styles.btnContainer}>
 					<TouchableOpacity
@@ -56,7 +54,7 @@ class Home extends React.Component {
 						style={styles.btn}
 						activeOpacity={0.5}
 						onPress={() => this.onPress('Commons')}>
-						<Text style={styles.btnText}>COMMON CHOICES</Text>
+						<Text style={styles.btnText}>Common choices</Text>
 					</TouchableOpacity>
 					<TouchableOpacity
 						style={styles.btn}
@@ -64,24 +62,13 @@ class Home extends React.Component {
 						onPress={() => this.onPress('Options')}>
 						<Text style={styles.btnText}>Settings</Text>
 					</TouchableOpacity>
-					<TouchableOpacity
-						style={styles.btn}
-						activeOpacity={0.5}
-						onPress={() =>
-							console.log(
-								this.props.data.choice.parentA.choices,
-								this.props.data.choice.parentB.choices
-							)
-						}>
-						<Text style={styles.btnText}>RESET</Text>
-					</TouchableOpacity>
 				</View>
 				<View style={styles.aboutContainer}>
 					<TouchableOpacity
 						style={styles.btn}
 						activeOpacity={0.5}
 						onPress={() => this.onPress('About')}>
-						<Text style={styles.btnText}>ABOUT</Text>
+						<Text style={styles.btnText}>About</Text>
 					</TouchableOpacity>
 				</View>
 			</View>

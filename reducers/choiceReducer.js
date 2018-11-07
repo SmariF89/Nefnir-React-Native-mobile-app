@@ -17,11 +17,11 @@ const initialState = {
 	allChoices: [],
 	commonChoices: [],
 	parentA: {
-		name: '',
+		name: 'Dvergur',
 		choices: []
 	},
 	parentB: {
-		name: '',
+		name: 'Mjallhvit',
 		choices: []
 	}
 };
@@ -61,6 +61,8 @@ const choiceReducer = (state = initialState, action) => {
 					...state,
 					commonChoices: [...newState.commonChoices, action.payload]
 				};
+			} else {
+				return state;
 			}
 		case ADD_PARENT_B_CHOICE:
 			if (state.parentB.choices.includes(action.payload)) {
@@ -94,4 +96,4 @@ const choiceReducer = (state = initialState, action) => {
 	}
 };
 
-export default choiceReducer
+export default choiceReducer;
