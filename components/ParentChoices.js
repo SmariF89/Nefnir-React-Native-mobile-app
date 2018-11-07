@@ -22,6 +22,8 @@ import ListItem from "./ListItem";
 import { sectionListForm } from "../utils/ListUtilities";
 import { getAllChoices } from "../actions/choiceActions";
 
+import styles from "../styles/styles";
+
 class ParentChoices extends React.Component {
     constructor(props) {
         super(props);
