@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from '../styles/styles';
 
 class Home extends React.Component {
@@ -48,6 +48,14 @@ class Home extends React.Component {
 							{parentB.name === ''
 								? 'Select name for Parent #2'
 								: `${parentB.name}'s choices`}
+						</Text>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={styles.btn}
+						activeOpacity={0.5}
+						onPress={() => this.onPress('Combos')}>
+						<Text style={styles.btnText}>
+							Common combinations ideas
 						</Text>
 					</TouchableOpacity>
 					<TouchableOpacity

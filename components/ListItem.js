@@ -23,7 +23,7 @@ class ListItem extends React.Component {
 	}
 
 	render() {
-		const { item, parent, isOrderedByCommon } = this.props;
+		const { item, parent } = this.props;
 		const { parentA, parentB } = this.props.data.choice;
 		let isCandidate = false;
 		if (parentA.name == parent) {
@@ -31,46 +31,24 @@ class ListItem extends React.Component {
 		} else if (parentB.name == parent) {
 			isCandidate = parentB.choices.includes(item.Nafn);
 		}
-
-		if (isOrderedByCommon) {
-			return (
-				<View
-					style={[
-						styles.infoContainer,
-						isCandidate && styles.isCandidate
-					]}>
-					<TouchableOpacity
-						style={styles.nameInfoContainer}
-						activeOpacity={0.5}
-						onPress={() => this.toggleChoice(parent, item.Nafn)}>
-						<Text key={item.key} style={styles.text}>
-							{`${item.Nafn} \nFyrsta nafn: ${
-								item.Fjoldi1
-							} einstaklingar\nAnnað nafn: ${
-								item.Fjoldi2
-							} einstaklingar`}
-						</Text>
-					</TouchableOpacity>
-				</View>
-			);
-		} else {
-			return (
-				<View
-					style={[
-						styles.infoContainer,
-						isCandidate && styles.isCandidate
-					]}>
-					<TouchableOpacity
-						style={styles.nameInfoContainer}
-						activeOpacity={0.5}
-						onPress={() => this.toggleChoice(parent, item.Nafn)}>
-						<Text key={item.key} style={styles.text}>
-							{`${item.Nafn}`}
-						</Text>
-					</TouchableOpacity>
-				</View>
-			);
-		}
+		return (
+			<View
+				style={[
+					styles.infoContainer,
+					isCandidate && styles.isCandidate
+				]}>
+				<TouchableOpacity
+					style={styles.nameInfoContainer}
+					activeOpacity={0.5}
+					onPress={() => this.toggleChoice(parent, item.Nafn)}>
+					<Text key={item.key} style={styles.text}>
+						{`${item.Nafn}\nFirst name: ${
+							item.Fjoldi1
+						} people\nSecond name: ${item.Fjoldi2} people\n`}
+					</Text>
+				</TouchableOpacity>
+			</View>
+		);
 	}
 }
 

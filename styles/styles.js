@@ -1,4 +1,7 @@
 import { StyleSheet } from 'react-native'
+import { Dimensions } from 'react-native'
+
+const win = Dimensions.get('window')
 
 export default StyleSheet.create({
     // -- Container Styles
@@ -112,15 +115,60 @@ export default StyleSheet.create({
     fontSize: 18,
     color: 'white'
   },
-  textAlignCenterBig: {
-    textAlign: 'center',
-    fontSize: 32
-  },
   textAlignCenter: {
     textAlign: 'center',
     fontSize: 18
   },
+  textAlignCenterBig: {
+    textAlign: 'center',
+    fontSize: 32
+  },
   header: {
     fontSize: 28
+  },
+  aboutTextAlignCenter: {
+    textAlign: 'center',
+    fontSize: 18,
+    marginTop: 30
+  },
+  aboutSubHeader: {
+    fontSize: 28,
+    textAlign: 'center',
+    marginTop: 40
+  },
+  aboutInfo: {
+    textAlign: 'justify',
+    marginBottom: 40
+  },
+  aboutImage: {
+    flex: 1,
+    alignSelf: 'center',
+    width: win.width,
+    height: win.width
+  },
+  nefnirImage: {
+    flex: 1,
+    alignSelf: 'center',
+    marginTop: 60
+  },
+  aboutAuthorsCaption: {
+    textAlign: 'center',
+    overflow: 'visible',
+    fontSize: 12,
+    marginTop: -30
+  },
+  aboutView: {
+    width: '100%',
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: 'white'
+  },
+  aboutMarginMaker: {
+    marginTop: 100
+  },
+  aboutAuthorsOfApp: {
+    textAlign: 'center',
+    fontSize: 28,
+    marginTop: 200
   }
 })

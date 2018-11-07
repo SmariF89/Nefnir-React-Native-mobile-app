@@ -17,8 +17,6 @@ import ListItem from './ListItem'
 import { sectionListForm } from '../utils/ListUtilities'
 import {
     getAllChoices,
-    removeParentAChoice,
-    removeParentBChoice,
     addParentAChoice,
     addParentBChoice
 } from '../actions/choiceActions'
@@ -26,81 +24,52 @@ import {
 import styles from '../styles/styles'
 
 class ParentChoices extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      filterText: '',
-      isOrderedByCommon: false,
-      rightContentWidth: Dimensions.get('window').width
-    }
-  }
+    constructor(props) {
+		super(props);
+		this.state = {
+			filterText: '',
+			rightContentWidth: Dimensions.get('window').width
+		};
+	}
 
-  componentDidMount () {
-    const { allChoices } = this.props.data.choice
-    const { getAllChoices } = this.props
-    getAllChoices()
-    if (allChoices.length === 0) {
-      getAllChoices()
-    }
-  }
+	componentDidMount() {
+		// Data is loaded iff it has not been loaded before.
+		const { choicesLoaded } = this.props.data.choice;
+		const { getAllChoices } = this.props;
+		if (!choicesLoaded) {
+			getAllChoices();
+		}
+	}
 
-  removeFromMyChoices (item) {
-    console.log('remove!')
-    const { removeParentAChoice, removeParentBChoice } = this.props
-    if (this.state.parent == this.props.data.choice.parentA.name) {
-      removeParentAChoice(item)
-    } else {
-      removeParentBChoice(item)
-    }
-  }
+	render() {
+		// In order to follow the DRY-principle we reuse this component for both parents.
+		// In order to distinct between parents the parent's name is sent in as a prop.
+		// This parent name is in turn sent into ListItem as a prop as the distinction
+		// between parents is important there as well.
+		const parent = this.props.navigation.state.params;
 
-  render () {
-    const parent = this.props.navigation.state.params
-    const { filterText, isOrderedByCommon, rightContentWidth } = this.state
-    const { allChoices } = this.props.data.choice
-    const {
-            parentAChoices,
-            parentBChoices,
-            addParentAChoice,
-            addParentBChoice
-        } = this.props
-    const choiceData = sectionListForm(
-            allChoices.filter(name =>
-                name.Nafn.toLowerCase().includes(filterText.toLowerCase())
-            )
-        )
-    console.log('rightContentWidth: ', rightContentWidth)
+		// filterText is the search string used when filtering the list.
+		// rightContentWidth is the width of the Swipeable.
+		const { filterText, rightContentWidth } = this.state;
 
-    /*
+		// Selected choices of both parents are fetched, then the parent variable
+		// is used to distinct between which one is used.
+		const {
+			parentAChoices,
+			parentBChoices,
+			addParentAChoice,
+			addParentBChoice
+		} = this.props;
 
-    <View style={styles.myChoicesItem}>
-        <Text style={styles.myChoicesItemName}>{item}</Text>
-        <TouchableOpacity
-            onPress={() => {parent ==this.props.data.choice.parentA.name
-                ? addParentAChoice( item)
-                : addParentBChoice(item);
-            }}
-            style={
-                styles.myChoicesItemButton
-            }>
-            <Text>remove</Text>
-        </TouchableOpacity>
-    </View>
-    
-    <View style={styles.myChoicesItem}>
-        <CheckBox 
-            title= {{item}}
-            iconRight
-            iconType='material'
-            checkedIcon='clear'
-            checkedColor='red'
-            checked={this.state.checked}
-            onPress={() => {parent ==this.props.data.choice.parentA.name
-                ? addParentAChoice( item)
-                : addParentBChoice(item);
-            }}
-    </View>
-    */
+		// All of the names fetched from the state, filtered and reformed to fit
+		// the SectionList's requirements.
+		const { allChoices, choicesLoaded } = this.props.data.choice;
+		const choiceData = sectionListForm(
+			allChoices.filter(name =>
+				name.Nafn.toLowerCase().includes(filterText.toLowerCase())
+			)
+		);
+
     return (
       <View style={styles.container}>
         <View style={styles.logoContainer}>
@@ -112,11 +81,11 @@ class ParentChoices extends React.Component {
           <Swipeable
             rightButtonWidth={rightContentWidth}
             rightButtons={[
-              <View style={[styles.rightSwipeItem]}>
+            <View style={[styles.rightSwipeItem]}>
                 <Text> swipe right to see awailable choices</Text>
                 <Text>My choices</Text>
                 <View>
-                  <FlatList
+                    <FlatList
                     data={
                         parent == this.props.data.choice.parentA.name
                             ? parentAChoices
@@ -141,7 +110,7 @@ class ParentChoices extends React.Component {
                     )}
                     />
                 </View>
-              </View>
+            </View>
             ]}
                     >
             <View>
@@ -157,24 +126,24 @@ class ParentChoices extends React.Component {
                                     })}
                 value={filterText}
                             />
-              <SectionList
-                renderItem={({ item }) => (
-                  <ListItem
-                    item={item}
-                    isOrderedByCommon={isOrderedByCommon}
-                    parent={parent}
-                                    />
-                                )}
-                renderSectionHeader={({
-                                    section: { title }
-                                }) => (
-                                  <Text style={styles.header}>{title}</Text>
-                                )}
-                sections={choiceData}
-                ListEmptyComponent={
-                  <ActivityIndicator size='large' />
-                                }
-                            />
+                <SectionList
+                    renderItem={({ item }) => (
+                        <ListItem item={item} parent={parent} />
+                    )}
+                    renderSectionHeader={({
+                        section: { title }
+                    }) => (
+                        <Text style={styles.header}>{title}</Text>
+                    )}
+                    sections={choiceData}
+                    ListEmptyComponent={
+                        choicesLoaded ? (
+                            <Text>No match found</Text>
+                        ) : (
+                            <ActivityIndicator size="large" />
+                        )
+                    }
+                />
             </View>
           </Swipeable>
         </View>
