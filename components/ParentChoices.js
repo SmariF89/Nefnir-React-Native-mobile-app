@@ -8,7 +8,8 @@ import {
 	SectionList,
 	FlatList,
 	ActivityIndicator,
-	Dimensions
+	Dimensions,
+	CheckBox
 } from 'react-native';
 import Swipeable from 'react-native-swipeable';
 
@@ -16,8 +17,6 @@ import ListItem from './ListItem';
 import { sectionListForm } from '../utils/ListUtilities';
 import {
 	getAllChoices,
-	removeParentAChoice,
-	removeParentBChoice,
 	addParentAChoice,
 	addParentBChoice
 } from '../actions/choiceActions';
@@ -29,6 +28,7 @@ class ParentChoices extends React.Component {
 		super(props);
 		this.state = {
 			filterText: '',
+			popularityInfo: false,
 			rightContentWidth: Dimensions.get('window').width
 		};
 	}
@@ -51,7 +51,7 @@ class ParentChoices extends React.Component {
 
 		// filterText is the search string used when filtering the list.
 		// rightContentWidth is the width of the Swipeable.
-		const { filterText, rightContentWidth } = this.state;
+		const { filterText, rightContentWidth, popularityInfo } = this.state;
 
 		// Selected choices of both parents are fetched, then the parent variable
 		// is used to distinct between which one is used.
@@ -85,7 +85,7 @@ class ParentChoices extends React.Component {
 						rightButtons={[
 							<View style={[styles.rightSwipeItem]}>
 								<Text>
-									swipe right to see awailable choices
+									Swipe right to see awailable choices
 								</Text>
 								<Text>My choices</Text>
 								<View>
@@ -127,37 +127,62 @@ class ParentChoices extends React.Component {
 								</View>
 							</View>
 						]}>
-						<View>
-							<Text>swipe left to see current choices</Text>
-							<TextInput
-								placeholder={'Filter names...'}
-								style={styles.input}
-								underlineColorAndroid={'rgba(0,0,0,0)'}
-								onChangeText={text =>
-									this.setState({
-										filterText: text
-									})
-								}
-								value={filterText}
-							/>
-							<SectionList
-								renderItem={({ item }) => (
-									<ListItem item={item} parent={parent} />
-								)}
-								renderSectionHeader={({
-									section: { title }
-								}) => (
-									<Text style={styles.header}>{title}</Text>
-								)}
-								sections={choiceData}
-								ListEmptyComponent={
-									choicesLoaded ? (
-										<Text>No match found</Text>
-									) : (
-										<ActivityIndicator size="large" />
-									)
-								}
-							/>
+						<View style={styles.containerWrapper}>
+							<View>
+								<Text style={styles.swipeInfo}>
+									Swipe left to see current choices
+								</Text>
+							</View>
+							<View style={styles.choiceControlContainer}>
+								<TextInput
+									placeholder={'Filter names...'}
+									style={styles.inputMain}
+									underlineColorAndroid={'rgba(0,0,0,0)'}
+									onChangeText={text =>
+										this.setState({
+											filterText: text
+										})
+									}
+									value={filterText}
+								/>
+								<CheckBox
+									title={'Show popularity'}
+									size={200}
+									style={styles.check}
+									onValueChange={() =>
+										this.setState({
+											popularityInfo: !popularityInfo
+										})
+									}
+									value={popularityInfo}
+								/>
+							</View>
+							<View>
+								<SectionList
+									renderItem={({ item }) => (
+										<ListItem
+											item={item}
+											parent={parent}
+											showPopInfo={popularityInfo}
+										/>
+									)}
+									renderSectionHeader={({
+										section: { title }
+									}) => (
+										<Text style={styles.header}>
+											{title}
+										</Text>
+									)}
+									sections={choiceData}
+									ListEmptyComponent={
+										choicesLoaded ? (
+											<Text>No match found</Text>
+										) : (
+											<ActivityIndicator size="large" />
+										)
+									}
+								/>
+							</View>
 						</View>
 					</Swipeable>
 				</View>
