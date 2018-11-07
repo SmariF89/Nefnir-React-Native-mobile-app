@@ -94,4 +94,4 @@ const choiceReducer = (state = initialState, action) => {
 	}
 };
 
-export default choiceReducer;
+export default choiceReducer
