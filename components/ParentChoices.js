@@ -23,31 +23,43 @@ class ParentChoices extends React.Component {
 		super(props);
 		this.state = {
 			filterText: '',
-			isOrderedByCommon: false,
 			rightContentWidth: Dimensions.get('window').width
 		};
 	}
 
 	componentDidMount() {
-		const { allChoices } = this.props.data.choice;
+		// Data is loaded iff it has not been loaded before.
+		const { choicesLoaded } = this.props.data.choice;
 		const { getAllChoices } = this.props;
-		getAllChoices();
-		if (allChoices.length === 0) {
+		if (!choicesLoaded) {
 			getAllChoices();
 		}
 	}
 
 	render() {
+		// In order to follow the DRY-principle we reuse this component for both parents.
+		// In order to distinct between parents the parent's name is sent in as a prop.
+		// This parent name is in turn sent into ListItem as a prop as the distinction
+		// between parents is important there as well.
 		const parent = this.props.navigation.state.params;
-		const { filterText, isOrderedByCommon, rightContentWidth } = this.state;
-		const { allChoices } = this.props.data.choice;
+
+		// filterText is the search string used when filtering the list.
+		// rightContentWidth is the width of the Swipeable.
+		const { filterText, rightContentWidth } = this.state;
+
+		// Selected choices of both parents are fetched, then the parent variable
+		// is used to distinct between which one is used.
 		const { parentAChoices, parentBChoices } = this.props;
+
+		// All of the names fetched from the state, filtered and reformed to fit
+		// the SectionList's requirements.
+		const { allChoices, choicesLoaded } = this.props.data.choice;
 		const choiceData = sectionListForm(
 			allChoices.filter(name =>
 				name.Nafn.toLowerCase().includes(filterText.toLowerCase())
 			)
 		);
-		console.log('rightContentWidth: ', rightContentWidth);
+
 		return (
 			<View style={styles.container}>
 				<View style={styles.logoContainer}>
@@ -96,11 +108,7 @@ class ParentChoices extends React.Component {
 							/>
 							<SectionList
 								renderItem={({ item }) => (
-									<ListItem
-										item={item}
-										isOrderedByCommon={isOrderedByCommon}
-										parent={parent}
-									/>
+									<ListItem item={item} parent={parent} />
 								)}
 								renderSectionHeader={({
 									section: { title }
@@ -109,7 +117,11 @@ class ParentChoices extends React.Component {
 								)}
 								sections={choiceData}
 								ListEmptyComponent={
-									<ActivityIndicator size="large" />
+									choicesLoaded ? (
+										<Text>No match found</Text>
+									) : (
+										<ActivityIndicator size="large" />
+									)
 								}
 							/>
 						</View>
@@ -120,7 +132,7 @@ class ParentChoices extends React.Component {
 						style={styles.btn}
 						activeOpacity={0.5}
 						onPress={() => this.props.navigation.goBack(null)}>
-						<Text style={styles.btnText}>GO BACK</Text>
+						<Text style={styles.btnText}>Go back</Text>
 					</TouchableOpacity>
 				</View>
 			</View>

@@ -37,7 +37,6 @@ class CommonChoices extends React.Component {
 						)}
 					/>
 				</View>
-
 				<TouchableOpacity
 					style={styles.btn}
 					activeOpacity={0.5}

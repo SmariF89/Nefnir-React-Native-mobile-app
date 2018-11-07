@@ -3,7 +3,8 @@ import {
 	GET_PARENT_CHOICES,
 	ADD_IF_COMMON_CHOICE,
 	ADD_PARENT_A_CHOICE,
-	ADD_PARENT_B_CHOICE
+	ADD_PARENT_B_CHOICE,
+	GET_ALL_COMBINATION_IDEAS
 } from '../constants/choiceConstants';
 
 import {
@@ -21,6 +22,23 @@ export const getAllChoices = () => {
 			);
 			const responseJson = await response.json();
 			dispatch({ type: GET_ALL_CHOICES, payload: responseJson });
+		} catch (err) {
+			console.error(err);
+		}
+	};
+};
+
+export const getAllCombinationIdeas = () => {
+	return async dispatch => {
+		try {
+			const response = await fetch(
+				'https://hagstofa.is/media/49535/tvinefni.json'
+			);
+			const responseJson = await response.json();
+			dispatch({
+				type: GET_ALL_COMBINATION_IDEAS,
+				payload: responseJson
+			});
 		} catch (err) {
 			console.error(err);
 		}
