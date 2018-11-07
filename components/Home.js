@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
+import styles from '../styles/styles'
 
 class Home extends React.Component {
   constructor (props) {
@@ -18,7 +19,7 @@ class Home extends React.Component {
     console.log(missingNames)
     return (
       <View style={styles.container}>
-        <View style={styles.appLogo}>
+        <View style={styles.logoContainer}>
           <Image source={require('../assets/images/name-logo.png')} />
           <Text>!Insert APP name here!</Text>
         </View>
@@ -77,53 +78,19 @@ class Home extends React.Component {
             <Text style={styles.btnText}>RESET</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.aboutContainer} />
-        <TouchableOpacity
-          style={styles.btn}
-          activeOpacity={0.5}
-          onPress={() => this.onPress('About')}
-        >
-          <Text style={styles.btnText}>ABOUT</Text>
-        </TouchableOpacity>
+        <View style={styles.aboutContainer}>
+          <TouchableOpacity
+            style={styles.btn}
+            activeOpacity={0.5}
+            onPress={() => this.onPress('About')}
+          >
+            <Text style={styles.btnText}>ABOUT</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    width: '100%',
-    backgroundColor: '#f4fff4'
-  },
-  btn: {
-    marginTop: 8,
-    marginBottom: 0,
-    width: '80%',
-    paddingTop: 10,
-    paddingBottom: 10,
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: 'gray',
-    backgroundColor: '#649cef'
-  },
-  btnText: {
-    textAlign: 'center',
-    fontSize: 18,
-    color: 'white'
-  },
-  appLogo: {
-    flex: 4,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  btnContainer: {
-    flex: 5,
-    alignItems: 'center',
-    width: '100%'
-  }
-})
 
 const mapStateToProps = state => {
   return {
