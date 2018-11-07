@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
+    // -- Container Styles
   container: {
     flex: 1,
     alignItems: 'center',
@@ -21,8 +22,8 @@ export default StyleSheet.create({
   commonContainer: {
     flex: 8,
     justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%'
+        // alignItems: 'center',
+    width: '80%'
   },
   aboutContainer: {
     flex: 1,
@@ -52,22 +53,10 @@ export default StyleSheet.create({
     justifyContent: 'space-around',
     flex: 1
   },
-  text: {
-    fontSize: 24
-  },
-  header: {
-    fontWeight: 'bold',
-    fontSize: 26,
-    backgroundColor: '#f7f7f7',
-    justifyContent: 'space-around',
-    paddingLeft: 8,
-    paddingTop: 8,
-    paddingBottom: 8,
-    flex: 1
-  },
   input: {
     height: 40,
     borderColor: 'gray',
+    width: '100%',
     borderWidth: 1,
     marginBottom: 4,
     paddingLeft: 4
@@ -85,9 +74,19 @@ export default StyleSheet.create({
     borderRadius: 6,
     backgroundColor: '#D97E00'
   },
+
+    // -- Text Styles
+  textAlignLeft: {
+    textAlign: 'left',
+    fontSize: 18
+  },
   btnText: {
     textAlign: 'center',
     fontSize: 18,
     color: 'white'
+  },
+  textAlignCenter: {
+    textAlign: 'center',
+    fontSize: 18
   }
 })
