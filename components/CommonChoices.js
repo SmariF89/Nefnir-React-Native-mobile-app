@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, FlatList } from "react-native";
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    StyleSheet,
+    FlatList
+} from "react-native";
 import { connect } from "react-redux";
 
 class CommonChoices extends React.Component {
@@ -12,21 +18,22 @@ class CommonChoices extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({choices: this.props.data.choice.commonChoices});
+        this.setState({ choices: this.props.data.choice.commonChoices });
     }
 
     render() {
-
         return (
             <View>
-                <Text style = {styles.TitleToCommonChoices}>
+                <Text style={styles.TitleToCommonChoices}>
                     Here are the names you both agreed on
                 </Text>
-                <View >
-                      <FlatList
-                          data={this.state.choices}
-                          renderItem={({ item }) => <Text style = {styles.commonChoiceText}>{item}</Text>}
-                      />
+                <View>
+                    <FlatList
+                        data={this.state.choices}
+                        renderItem={({ item }) => (
+                            <Text style={styles.commonChoiceText}>{item}</Text>
+                        )}
+                    />
                 </View>
 
                 <TouchableOpacity
@@ -71,9 +78,9 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         borderWidth: 1,
         borderRadius: 2,
-        borderColor: '#ddd',
+        borderColor: "#ddd",
         borderBottomWidth: 0,
-        shadowColor: '#000',
+        shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.8,
         shadowRadius: 2

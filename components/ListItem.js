@@ -6,8 +6,13 @@ import { addParentAChoice, addParentBChoice, addIfCommon } from "../actions/choi
 class ListItem extends React.Component {
     toggleChoice(parent, name) {
         const { parentA, parentB } = this.props.data.choice;
+<<<<<<< HEAD
         const { addParentAChoice, addParentBChoice, addIfCommon } = this.props;
         console.warn(parent);
+=======
+        const { addParentAChoice, addParentBChoice } = this.props;
+        //console.warn(parent);
+>>>>>>> bb6e6af289a4fe5b0157840fcfbcf58cfa219e4e
         if (parentA.name === parent) {
             if (!parentA.choices.includes(name)) {
                 addParentAChoice(name);
