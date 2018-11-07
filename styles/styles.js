@@ -8,7 +8,6 @@ export default StyleSheet.create({
         width: "100%",
         backgroundColor: "#E4F0FB"
     },
-
     logoContainer: {
         flex: 4,
         justifyContent: "center",
@@ -116,5 +115,8 @@ export default StyleSheet.create({
     textAlignCenter: {
         textAlign: "center",
         fontSize: 18
+    },
+    header: {
+        fontSize: 28
     }
 });
