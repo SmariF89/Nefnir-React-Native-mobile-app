@@ -8,8 +8,10 @@ import {
     StyleSheet,
     SectionList,
     FlatList,
-    ActivityIndicator
+    ActivityIndicator,
+    Dimensions
 } from "react-native";
+import Swipeable from "react-native-swipeable";
 // import RadioForm, {
 // 	RadioButton,
 // 	RadioButtonInput,
@@ -25,7 +27,8 @@ class ParentChoices extends React.Component {
         super(props);
         this.state = {
             filterText: "",
-            isOrderedByCommon: false
+            isOrderedByCommon: false,
+            rightContentWidth: Dimensions.get("window").width
         };
     }
 
@@ -40,7 +43,7 @@ class ParentChoices extends React.Component {
 
     render() {
         const parent = this.props.navigation.state.params;
-        const { filterText, isOrderedByCommon } = this.state;
+        const { filterText, isOrderedByCommon, rightContentWidth } = this.state;
         const { allChoices } = this.props.data.choice;
         const { parentAChoices, parentBChoices } = this.props;
         const choiceData = sectionListForm(
@@ -48,15 +51,37 @@ class ParentChoices extends React.Component {
                 name.Nafn.toLowerCase().includes(filterText.toLowerCase())
             )
         );
-
+        console.log("rightContentWidth: ", rightContentWidth);
         return (
             <View style={styles.container}>
                 <Text>
                     {parent}
                     's choices
                 </Text>
-                <View style={styles.listContainer}>
-                    <View style={styles.myChoices}>
+                <Swipeable
+                    rightButtonWidth={rightContentWidth}
+                    rightButtons={[
+                        <View style={[styles.rightSwipeItem]}>
+                            <Text>swipe right to see awailable choices</Text>
+                            <Text>My chouces</Text>
+                            <View>
+                                <FlatList
+                                    data={
+                                        parent ==
+                                        this.props.data.choice.parentA.name
+                                            ? parentAChoices
+                                            : parentBChoices
+                                    }
+                                    renderItem={({ item }) => (
+                                        <Text>{item}</Text>
+                                    )}
+                                />
+                            </View>
+                        </View>
+                    ]}
+                >
+                    <View>
+                        <Text>swipe left to see current choices</Text>
                         <TextInput
                             placeholder={"Filter names..."}
                             style={styles.input}
@@ -85,17 +110,7 @@ class ParentChoices extends React.Component {
                             }
                         />
                     </View>
-                    <View style={styles.containerSections}>
-                        <FlatList
-                            data={
-                                parent == this.props.data.choice.parentA.name
-                                    ? parentAChoices
-                                    : parentBChoices
-                            }
-                            renderItem={({ item }) => <Text>{item}</Text>}
-                        />
-                    </View>
-                </View>
+                </Swipeable>
             </View>
         );
     }
@@ -165,6 +180,10 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 18,
         color: "white"
+    },
+    rightSwipeItem: {
+        flex: 1,
+        paddingLeft: 20
     }
 });
 
