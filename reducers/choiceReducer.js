@@ -20,6 +20,8 @@ import {
 	SET_PARENT_B_NAME
 } from '../constants/parentConstants';
 
+import { RESET_APP } from '../constants/AppConstants';
+
 const initialState = {
 	// fetching: false,
 	// error: undefined,
@@ -109,9 +111,21 @@ const choiceReducer = (state = initialState, action) => {
 			return state;
 		case CLEAR_ALL_PARENT_B_CHOICES:
 			return state;
-
 		case CLEAR_ALL_PARENT_CHOICES:
 			return state;
+		case RESET_APP:
+			return {
+				...state,
+				commonChoices: [],
+				parentA: {
+					name: '',
+					choices: []
+				},
+				parentB: {
+					name: '',
+					choices: []
+				}
+			};
 		default:
 			return state;
 	}
