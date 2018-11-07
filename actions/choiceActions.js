@@ -21,7 +21,7 @@ import {
 } from "../constants/parentConstants";
 
 export const getAllChoices = () => {
-    console.log("getAllChoices");
+    //console.log("getAllChoices");
     return async dispatch => {
         try {
             const response = await fetch(
@@ -36,9 +36,10 @@ export const getAllChoices = () => {
     };
 };
 
-export const getSelectedChoices = () => {
+export const getSelectedChoices = choices => {
     return {
-        type: GET_PARENT_CHOICES
+        type: GET_PARENT_CHOICES,
+        payload: choices
     };
 };
 

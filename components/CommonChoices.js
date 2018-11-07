@@ -13,12 +13,20 @@ class CommonChoices extends React.Component {
         };
     }
 
+    componentDidMount() {
+        const { allChoices } = this.props.data.choice;
+        const { getSelectedChoices } = this.props;
+        getSelectedChoices();
+        if (allChoices.length === 0) {
+            getSelectedChoices();
+        }
+    }
+
     render() {
-        const listItems = this.state.choices.map(item => <Text>{item}</Text>);
+        // const listItems = this.state.choices.map(item => <Text>{item}</Text>);
 
         return (
             <View>
-                {listItems}
                 <TouchableOpacity
                     style={styles.btn}
                     activeOpacity={0.5}
@@ -32,6 +40,8 @@ class CommonChoices extends React.Component {
 }
 
 const mapStateToProps = state => {
+    console.log("map state to props: ", state);
+
     return {
         data: state
     };

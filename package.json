@@ -1,39 +1,40 @@
 {
-  "name": "my-new-project",
-  "main": "node_modules/expo/AppEntry.js",
-  "private": true,
-  "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "eject": "expo eject",
-    "test": "node ./node_modules/jest/bin/jest.js --watchAll"
-  },
-  "jest": {
-    "preset": "jest-expo"
-  },
-  "dependencies": {
-    "@expo/samples": "2.1.1",
-    "buffer": "^5.2.1",
-    "es6-promise": "^4.2.5",
-    "expo": "^30.0.1",
-    "isomorphic-fetch": "^2.2.1",
-    "react": "16.3.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
-    "react-native-uuid": "^1.4.9",
-    "react-navigation": "^2.16.0",
-    "react-redux": "^5.1.0",
-    "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
-  },
-  "devDependencies": {
-    "@types/isomorphic-fetch": "0.0.34",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.8.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.11.1",
-    "jest-expo": "30.0.0"
-  }
+	"name": "my-new-project",
+	"main": "node_modules/expo/AppEntry.js",
+	"private": true,
+	"scripts": {
+		"start": "expo start",
+		"android": "expo start --android",
+		"ios": "expo start --ios",
+		"eject": "expo eject",
+		"test": "node ./node_modules/jest/bin/jest.js --watchAll"
+	},
+	"jest": {
+		"preset": "jest-expo"
+	},
+	"dependencies": {
+		"@expo/samples": "2.1.1",
+		"es6-promise": "^4.2.5",
+		"expo": "^30.0.1",
+		"isomorphic-fetch": "^2.2.1",
+		"link": "^0.1.5",
+		"react": "16.3.1",
+		"react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+		"react-native-simple-radio-button": "^2.7.3",
+		"react-native-uuid-generator": "^4.0.1",
+		"react-navigation": "^2.16.0",
+		"react-redux": "^5.1.0",
+		"redux": "^4.0.1",
+		"redux-thunk": "^2.3.0"
+	},
+	"devDependencies": {
+		"@types/isomorphic-fetch": "0.0.34",
+		"babel-eslint": "^10.0.1",
+		"eslint": "^5.8.0",
+		"eslint-config-airbnb": "^17.1.0",
+		"eslint-plugin-import": "^2.14.0",
+		"eslint-plugin-jsx-a11y": "^6.1.2",
+		"eslint-plugin-react": "^7.11.1",
+		"jest-expo": "30.0.0"
+	}
 }
