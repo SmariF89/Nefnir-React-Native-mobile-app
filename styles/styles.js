@@ -106,5 +106,8 @@ export default StyleSheet.create({
   textAlignCenter: {
     textAlign: 'center',
     fontSize: 18
+  },
+  header: {
+    fontSize: 28
   }
 })
