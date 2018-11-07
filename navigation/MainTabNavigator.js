@@ -1,14 +1,5 @@
 import React from 'react'
-import { Platform } from 'react-native'
-import {
-  createStackNavigator,
-  createBottomTabNavigator
-} from 'react-navigation'
-
-// import TabBarIcon from '../components/TabBarIcon';
-// import HomeScreen from '../screens/HomeScreen';
-// import LinksScreen from '../screens/LinksScreen';
-// import SettingsScreen from '../screens/SettingsScreen';
+import { createStackNavigator } from 'react-navigation'
 
 import Home from '../components/Home'
 import ParentChoices from '../components/ParentChoices'
@@ -17,13 +8,44 @@ import Settings from '../components/Settings'
 import About from '../components/About'
 
 const HomeStack = createStackNavigator({
-  Home: Home,
-  ChoiceSelection: ParentChoices,
-  Commons: CommonChoices,
-  Options: Settings,
-  About: About
+  Home: {
+    screen: Home,
+    navigationOptions: {
+      header: null
+    }
+  },
+  ChoiceSelection: {
+    screen: ParentChoices,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Commons: {
+    screen: CommonChoices,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Options: {
+    screen: Settings,
+    navigationOptions: {
+      header: null
+    }
+  },
+  About: {
+    screen: About,
+    navigationOptions: {
+      header: null
+    }
+  }
 })
 
-export default createBottomTabNavigator({
-  HomeStack
-})
+export default class App extends React.Component {
+  static navigationProps = {
+    headerMode: 'none'
+  }
+
+  render () {
+    return <HomeStack />
+  }
+}
