@@ -22,7 +22,7 @@ import ListItem from "./ListItem";
 import { sectionListForm } from "../utils/ListUtilities";
 import { getAllChoices } from "../actions/choiceActions";
 
-import styles from "../styles/styles";
+//import styles from "../styles/styles";
 
 class ParentChoices extends React.Component {
     constructor(props) {
@@ -65,7 +65,7 @@ class ParentChoices extends React.Component {
                     rightButtons={[
                         <View style={[styles.rightSwipeItem]}>
                             <Text>swipe right to see awailable choices</Text>
-                            <Text>My chouces</Text>
+                            <Text>My choices</Text>
                             <View>
                                 <FlatList
                                     data={
