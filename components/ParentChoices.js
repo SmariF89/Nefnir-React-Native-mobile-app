@@ -55,42 +55,46 @@ class ParentChoices extends React.Component {
 					{parent}
 					's choices
 				</Text>
-				<View style={styles.containerSections}>
-					<TextInput
-						placeholder={'Filter names...'}
-						style={styles.input}
-						onChangeText={text =>
-							this.setState({
-								filterText: text,
-								filter: true
-							})
-						}
-						value={filterText}
-					/>
-					<SectionList
-						renderItem={({ item }) => (
-							<ListItem
-								item={item}
-								isOrderedByCommon={isOrderedByCommon}
-								parent={parent}
-							/>
-						)}
-						renderSectionHeader={({ section: { title } }) => (
-							<Text style={styles.header}>{title}</Text>
-						)}
-						sections={choiceData}
-						ListEmptyComponent={<ActivityIndicator size="large" />}
-					/>
-				</View>
-				<View style={styles.containerSections}>
-					<FlatList
-						data={
-							parent == this.props.data.choice.parentA.name
-								? parentAChoices
-								: parentBChoices
-						}
-						renderItem={({ item }) => <Text>{item}</Text>}
-					/>
+				<View style={styles.listContainer}>
+					<View style={styles.myChoices}>
+						<TextInput
+							placeholder={'Filter names...'}
+							style={styles.input}
+							onChangeText={text =>
+								this.setState({
+									filterText: text,
+									filter: true
+								})
+							}
+							value={filterText}
+						/>
+						<SectionList
+							renderItem={({ item }) => (
+								<ListItem
+									item={item}
+									isOrderedByCommon={isOrderedByCommon}
+									parent={parent}
+								/>
+							)}
+							renderSectionHeader={({ section: { title } }) => (
+								<Text style={styles.header}>{title}</Text>
+							)}
+							sections={choiceData}
+							ListEmptyComponent={
+								<ActivityIndicator size="large" />
+							}
+						/>
+					</View>
+					<View style={styles.containerSections}>
+						<FlatList
+							data={
+								parent == this.props.data.choice.parentA.name
+									? parentAChoices
+									: parentBChoices
+							}
+							renderItem={({ item }) => <Text>{item}</Text>}
+						/>
+					</View>
 				</View>
 			</View>
 		);
@@ -101,6 +105,14 @@ const styles = StyleSheet.create({
 	container: {
 		backgroundColor: '#fff',
 		padding: 8,
+		flex: 1,
+		flexDirection: 'column'
+	},
+	myChoices: {
+		flex: 1,
+		flexDirection: 'column'
+	},
+	listContainer: {
 		flex: 1,
 		flexDirection: 'row'
 	},
