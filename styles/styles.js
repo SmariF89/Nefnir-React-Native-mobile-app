@@ -84,6 +84,12 @@ export default StyleSheet.create({
   },
 
     // -- checkColours
+  CheckBoxStyle: {
+    backgroundColor: '#E4F0FB',
+    margin: 0,
+    paddingTop: 3,
+    paddingBottom: 0
+  },
   isCandidate: {
     backgroundColor: '#D6FFA4'
   },
