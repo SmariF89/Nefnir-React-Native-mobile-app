@@ -8,8 +8,9 @@ import {
     // REMOVE_PARENT_A_CHOICE,
     // CLEAR_ALL_PARENT_A_CHOICES,
     // GET_PARENT_B_CHOICES,
-    ADD_PARENT_B_CHOICE
-    // REMOVE_PARENT_B_CHOICE,
+    ADD_PARENT_B_CHOICE,
+    REMOVE_PARENT_A_CHOICE,
+    REMOVE_PARENT_B_CHOICE
     // CLEAR_ALL_PARENT_B_CHOICES,
     // CLEAR_ALL_PARENT_CHOICES
 } from "../constants/choiceConstants";
@@ -40,12 +41,12 @@ export const getAllChoices = () => {
 };
 
 export const addIfCommon = choice => {
-  console.log("addIfCommon(payload): ", choice);
-  return {
-    type: ADD_IF_COMMON_CHOICE,
-    payload: choice
-  }
-}
+    console.log("addIfCommon(payload): ", choice);
+    return {
+        type: ADD_IF_COMMON_CHOICE,
+        payload: choice
+    };
+};
 
 export const getSelectedChoices = choices => {
     return {
@@ -55,7 +56,9 @@ export const getSelectedChoices = choices => {
 };
 
 export const addParentAChoice = choice => {
-  console.log("addparentAChoice(payload): ", choice);
+    console.log("addparentAChoice(payload): ", choice);
+    console.log(`rass ${choice} rass`);
+    console.log(typeof choice);
     return {
         type: ADD_PARENT_A_CHOICE,
         payload: choice
@@ -90,6 +93,22 @@ export const resetAPP = () => {
     return {
         type: RESET_APP,
         payload: ""
+    };
+};
+
+export const removeParentAChoice = choice => {
+    console.log("Action: removeParentAChoice");
+    return {
+        type: REMOVE_PARENT_A_CHOICE,
+        payload: choice
+    };
+};
+
+export const removeParentBChoice = choice => {
+    console.log("Action: removeParentBChoice");
+    return {
+        type: REMOVE_PARENT_B_CHOICE,
+        payload: choice
     };
 };
 
