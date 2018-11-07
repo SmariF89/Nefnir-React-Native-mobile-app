@@ -24,7 +24,7 @@ const initialState = {
     // fetching: false,
     // error: undefined,
     allChoices: [],
-    commonChoices: ["Kalli", "Viðbjóður", "Rusl"],
+    commonChoices: [],
     parentA: {
         name: "",
         choices: []
