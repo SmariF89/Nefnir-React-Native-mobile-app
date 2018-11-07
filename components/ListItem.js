@@ -11,15 +11,9 @@ class ListItem extends React.Component {
         //console.warn(parent);
 
         if (parentA.name === parent) {
-            if (!parentA.choices.includes(name)) {
-                addParentAChoice(name);
-            }
-            addIfCommon(name);
+            addParentAChoice(name);
         } else if (parentB.name === parent) {
-            if (!parentB.choices.includes(name)) {
-                addParentBChoice(name);
-            }
-            addIfCommon(name);
+            addParentBChoice(name);
         }
     }
 
