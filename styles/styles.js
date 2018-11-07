@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
+import { Dimensions } from 'react-native'
+const win = Dimensions.get('window')
 
 export default StyleSheet.create({
 	// -- Container Styles
@@ -107,42 +109,97 @@ export default StyleSheet.create({
 		flex: 1
 	},
 
+
 	// -- checkColours
 	isCandidate: {
 		backgroundColor: '#D6FFA4'
 	},
+  
 	check: {
 		borderWidth: 1,
 		flex: 2
 	},
 
+    // -- checkColours
+  CheckBoxStyle: {
+    backgroundColor: '#E4F0FB',
+    margin: 0,
+    paddingTop: 3,
+    paddingBottom: 0
+  }
+  
 	// -- Text Styles
 
-	text: {
-		flex: 8,
-		fontSize: 18,
-		margin: 3,
-		textAlign: 'left',
-		justifyContent: 'center'
-	},
-	textAlignLeft: {
-		textAlign: 'left',
-		fontSize: 18
-	},
-	btnText: {
-		textAlign: 'center',
-		fontSize: 18,
-		color: 'white'
-	},
-	textAlignCenterBig: {
-		textAlign: 'center',
-		fontSize: 32
-	},
-	textAlignCenter: {
-		textAlign: 'center',
-		fontSize: 18
-	},
-	header: {
-		fontSize: 28
-	}
-});
+  text: {
+    flex: 8,
+    fontSize: 18,
+    margin: 3,
+    textAlign: 'left',
+    justifyContent: 'center'
+  },
+  textAlignLeft: {
+    textAlign: 'left',
+    fontSize: 18
+  },
+  btnText: {
+    textAlign: 'center',
+    fontSize: 18,
+    color: 'white'
+  },
+  textAlignCenter: {
+    textAlign: 'center',
+    fontSize: 18
+  },
+  textAlignCenterBig: {
+    textAlign: 'center',
+    fontSize: 32
+  },
+  header: {
+    fontSize: 28
+  },
+  aboutTextAlignCenter: {
+    textAlign: 'center',
+    fontSize: 18,
+    marginTop: 30
+  },
+  aboutSubHeader: {
+    fontSize: 28,
+    textAlign: 'center',
+    marginTop: 40
+  },
+  aboutInfo: {
+    textAlign: 'justify',
+    marginBottom: 40
+  },
+  aboutImage: {
+    flex: 1,
+    alignSelf: 'center',
+    width: win.width,
+    height: win.width
+  },
+  nefnirImage: {
+    flex: 1,
+    alignSelf: 'center',
+    marginTop: 60
+  },
+  aboutAuthorsCaption: {
+    textAlign: 'center',
+    overflow: 'visible',
+    fontSize: 12,
+    marginTop: -30
+  },
+  aboutView: {
+    width: '100%',
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: 'white'
+  },
+  aboutMarginMaker: {
+    marginTop: 100
+  },
+  aboutAuthorsOfApp: {
+    textAlign: 'center',
+    fontSize: 28,
+    marginTop: 200
+  }
+})
