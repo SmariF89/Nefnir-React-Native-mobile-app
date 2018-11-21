@@ -3,6 +3,13 @@ import { connect } from 'react-redux';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from '../styles/styles';
 
+// Main menu screen. The opening screen of our app. Displays all
+// options and possibilities for the user.
+// There is some navigation logic here: 
+// If the Redux state does not contain name for either of the 
+// parents, the user is routed automatically to the options screen
+// where the names can be set.
+
 class Home extends React.Component {
     constructor(props) {
         super(props);

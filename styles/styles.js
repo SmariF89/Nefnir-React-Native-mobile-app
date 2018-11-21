@@ -83,7 +83,8 @@ export default StyleSheet.create({
         width: '100%',
         borderWidth: 1,
         marginBottom: 4,
-        paddingLeft: 4
+        paddingLeft: 4,
+        borderRadius: 6
     },
     btn: {
         marginTop: 0,

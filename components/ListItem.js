@@ -9,6 +9,10 @@ import {
 
 import styles from '../styles/styles';
 
+// Renders and provides functionality of each item in the choice list of ParentChoices.
+// Functionality is toggling selection.
+// Parent variable passed in as prop is used to distinct whether the
+// selection is applied for parentA or parentB.
 class ListItem extends React.Component {
     toggleChoice(parent, name) {
         const { parentA, parentB } = this.props.data.choice;
@@ -35,11 +39,11 @@ class ListItem extends React.Component {
             <View
                 style={[
                     index % 2 == 0 &&
-                        parentA.name == parent &&
-                        styles.infoContainerZebPA,
+                    parentA.name == parent &&
+                    styles.infoContainerZebPA,
                     index % 2 == 0 &&
-                        parentB.name == parent &&
-                        styles.infoContainerZebPB,
+                    parentB.name == parent &&
+                    styles.infoContainerZebPB,
                     index % 2 == 1 && styles.infoContainer,
                     isCandidate && styles.isCandidate
                 ]}
@@ -52,8 +56,8 @@ class ListItem extends React.Component {
                     <Text key={item.key} style={styles.text}>
                         {showPopInfo
                             ? `${item.Nafn}\nFirst name: ${
-                                  item.Fjoldi1
-                              } people\nSecond name: ${item.Fjoldi2} people`
+                            item.Fjoldi1
+                            } people\nSecond name: ${item.Fjoldi2} people`
                             : `${item.Nafn}`}
                     </Text>
                 </TouchableOpacity>

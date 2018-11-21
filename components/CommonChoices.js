@@ -3,6 +3,8 @@ import React from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import styles from '../styles/styles';
 
+// This component displays choices that both parents have in common.
+// This screen is read only and data can not be modified.
 class CommonChoices extends React.Component {
     constructor(props) {
         super(props);
@@ -28,6 +30,7 @@ class CommonChoices extends React.Component {
                 </View>
                 <View style={styles.commonContainer}>
                     <FlatList
+                        keyExtractor={(item, index) => index.toString()}
                         data={choices}
                         renderItem={({ item, index }) => (
                             <View
