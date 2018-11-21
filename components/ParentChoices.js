@@ -12,7 +12,7 @@ import {
 	CheckBox
 } from 'react-native';
 import Swipeable from 'react-native-swipeable';
-import { CheckBox } from 'react-native-elements'
+//import { CheckBox } from 'react-native-elements'
 
 import ListItem from './ListItem'
 import { sectionListForm } from '../utils/ListUtilities'
@@ -158,7 +158,7 @@ class ParentChoices extends React.Component {
 									value={popularityInfo}
 								/>
 							</View>
-							<View>
+							<View style={styles.listContainer}>
 								<SectionList
 									renderItem={({ item }) => (
 										<ListItem
