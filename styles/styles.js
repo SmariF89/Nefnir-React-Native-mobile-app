@@ -197,5 +197,19 @@ export default StyleSheet.create({
         textAlign: "center",
         fontSize: 28,
         marginTop: 200
+    },
+    myChoicesItem: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        borderBottomColor: "rgba(0, 0, 255, 0.3)",
+        borderBottomWidth: 2
+    },
+    myChoicesItemName: {
+        fontSize: 18
+    },
+    mychoiceRemoveName: {},
+    removeImage: {
+        height: 18,
+        width: 18
     }
 });
