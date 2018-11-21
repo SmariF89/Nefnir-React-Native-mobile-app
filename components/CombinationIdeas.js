@@ -40,7 +40,6 @@ class CombinationIdeas extends React.Component {
 			allCombinationsIdeas,
 			combinationsLoaded
 		} = this.props.data.choice;
-		console.log(allCombinationsIdeas);
 		const comboIdeas = sectionListFormCombos(
 			allCombinationsIdeas.filter(name =>
 				name.Nafn.toLowerCase().includes(filterText.toLowerCase())

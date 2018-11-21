@@ -1,5 +1,5 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
 import {
 	View,
 	Text,
@@ -8,24 +8,23 @@ import {
 	SectionList,
 	FlatList,
 	ActivityIndicator,
-	Dimensions,
-	CheckBox
+	Dimensions
 } from 'react-native';
 import Swipeable from 'react-native-swipeable';
-import { CheckBox } from 'react-native-elements'
+import { CheckBox } from 'react-native-elements';
 
-import ListItem from './ListItem'
-import { sectionListForm } from '../utils/ListUtilities'
+import ListItem from './ListItem';
+import { sectionListForm } from '../utils/ListUtilities';
 import {
 	getAllChoices,
 	addParentAChoice,
 	addParentBChoice
 } from '../actions/choiceActions';
 
-import styles from '../styles/styles'
+import styles from '../styles/styles';
 
 class ParentChoices extends React.Component {
-    constructor(props) {
+	constructor(props) {
 		super(props);
 		this.state = {
 			filterText: '',
@@ -201,15 +200,18 @@ class ParentChoices extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {
-    data: state,
-    parentAChoices: state.choice.parentA.choices,
-    parentBChoices: state.choice.parentB.choices
-  }
-}
+	return {
+		data: state,
+		parentAChoices: state.choice.parentA.choices,
+		parentBChoices: state.choice.parentB.choices
+	};
+};
 
-export default connect(mapStateToProps, {
-  getAllChoices,
-  addParentAChoice,
-  addParentBChoice
-})(ParentChoices)
+export default connect(
+	mapStateToProps,
+	{
+		getAllChoices,
+		addParentAChoice,
+		addParentBChoice
+	}
+)(ParentChoices);
