@@ -4,9 +4,10 @@ import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import {
     setParentAName,
     setParentBName,
-    resetAPP
-} from '../actions/choiceActions';
-import styles from '../styles/styles';
+    resetApp
+} from "../actions/choiceActions";
+
+import styles from "../styles/styles";
 
 class Settings extends React.Component {
     constructor(props) {
@@ -33,9 +34,9 @@ class Settings extends React.Component {
     }
 
     reset() {
-        const { resetAPP } = this.props;
-        resetAPP();
-        this.setState({ parentAName: '', parentBName: '' });
+        const { resetApp } = this.props;
+        resetApp();
+        this.setState({ parentAName: "", parentBName: "" });
     }
 
     render() {
@@ -109,5 +110,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { setParentAName, setParentBName, resetAPP }
+    { setParentAName, setParentBName, resetApp }
 )(Settings);

@@ -3,7 +3,6 @@ import {
 	ADD_PARENT_A_CHOICE,
 	ADD_IF_COMMON_CHOICE,
 	ADD_PARENT_B_CHOICE,
-	CLEAR_ALL_PARENT_CHOICES,
 	GET_ALL_COMBINATION_IDEAS
 } from '../constants/choiceConstants';
 
@@ -21,11 +20,11 @@ const initialState = {
 	allCombinationsIdeas: [],
 	commonChoices: [],
 	parentA: {
-		name: 'Dvergur',
+		name: '',
 		choices: []
 	},
 	parentB: {
-		name: 'Mjallhvit',
+		name: '',
 		choices: []
 	}
 };
@@ -90,8 +89,6 @@ const choiceReducer = (state = initialState, action) => {
 				];
 			}
 			return newState;
-		case CLEAR_ALL_PARENT_CHOICES:
-			return state;
 		case RESET_APP:
 			return {
 				...state,

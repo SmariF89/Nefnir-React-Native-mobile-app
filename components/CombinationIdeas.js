@@ -44,7 +44,6 @@ class CombinationIdeas extends React.Component {
                 name.Nafn.toLowerCase().includes(filterText.toLowerCase())
             )
         );
-
         if (combinationsLoaded) {
             return (
                 <View style={styles.container}>
@@ -100,7 +99,11 @@ class CombinationIdeas extends React.Component {
                 </View>
             );
         } else {
-            return <ActivityIndicator size='large' />;
+            return (
+                <View style={styles.container}>
+                    <ActivityIndicator size="large" />
+                </View>
+			      );
         }
     }
 }

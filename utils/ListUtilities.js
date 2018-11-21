@@ -52,9 +52,3 @@ export const sectionListFormCombos = data => {
 
 	return x;
 };
-
-export const flatListForm = data => {
-	return data
-		.map((item, index) => ({ ...item, key: item.Nafn }))
-		.sort((x, y) => (x.Nafn < y.Nafn ? -1 : 1));
-};
