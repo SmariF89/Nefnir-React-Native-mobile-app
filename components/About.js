@@ -69,7 +69,11 @@ export default class About extends React.Component {
                                 same process. When you're both satisfied with
                                 the names you have picked, you can see all the
                                 names that you have agreed upon by clicking the
-                                common choices button on the main menu.
+                                Common choices button on the main menu.
+                                {"\n"}
+                                If you are out of ideas regarding combination of
+                                names we offer a variety of combination ideas
+                                which can be browsed under Combination ideas.
                                 {"\n"}
                             </Text>
                         </LinearGradient>

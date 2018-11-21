@@ -19,7 +19,7 @@ class Home extends React.Component {
 		return (
 			<View style={styles.container}>
 				<View style={styles.logoContainer}>
-					<Image source={require('../assets/images/name-logo.png')} />
+					<Image source={require('../assets/images/nefnir.png')} />
 				</View>
 				<View style={styles.btnContainer}>
 					<TouchableOpacity
@@ -55,7 +55,7 @@ class Home extends React.Component {
 						activeOpacity={0.5}
 						onPress={() => this.onPress('Combos')}>
 						<Text style={styles.btnText}>
-							Common combinations ideas
+							Combination ideas
 						</Text>
 					</TouchableOpacity>
 					<TouchableOpacity

@@ -56,7 +56,25 @@ export default StyleSheet.create({
         flexDirection: "row",
         paddingBottom: 16
     },
+    infoContainerCC: {
+        backgroundColor: '#d9dde0',
+        paddingLeft: 8,
+        justifyContent: "space-around",
+        flex: 1
+    },
     infoContainer: {
+        paddingLeft: 8,
+        justifyContent: "space-around",
+        flex: 1
+    },
+    infoContainerZebPA: {
+        backgroundColor: '#bcd1f2',
+        paddingLeft: 8,
+        justifyContent: "space-around",
+        flex: 1
+    },
+    infoContainerZebPB: {
+        backgroundColor: '#f0d2f2',
         paddingLeft: 8,
         justifyContent: "space-around",
         flex: 1
@@ -90,6 +108,24 @@ export default StyleSheet.create({
         borderRightColor: "#FFD8A4",
         borderRadius: 6,
         backgroundColor: "#D97E00"
+    },
+    btnPopularity: {
+        flex: 2,
+        height: 40,
+        borderWidth: 1,
+        borderBottomColor: "#3E2400",
+        borderTopColor: "#FFD8A4",
+        borderRightColor: "#FFD8A4",
+        borderRadius: 6,
+        backgroundColor: "#D97E00",
+        marginLeft: 6,
+        marginRight: 6
+    },
+    btnPopularityText: {
+        textAlign: "center",
+        fontSize: 12,
+        color: "white",
+        padding: 4
     },
     rightSwipeItem: {
         flex: 1,
@@ -137,6 +173,17 @@ export default StyleSheet.create({
         textAlign: "left",
         fontSize: 18
     },
+    textAlignLeftBold: {
+        textAlign: "left",
+        fontSize: 18,
+        fontWeight: 'bold'
+    },
+    textAlignLeftItalic: {
+        textAlign: "left",
+        fontSize: 18,
+        fontStyle: 'italic',
+        marginBottom: 10
+    },
     btnText: {
         textAlign: "center",
         fontSize: 18,
@@ -152,6 +199,10 @@ export default StyleSheet.create({
     },
     header: {
         fontSize: 28
+    },
+    headerCombo: {
+        fontSize: 24,
+        fontStyle: 'italic'
     },
     aboutTextAlignCenter: {
         textAlign: "center",

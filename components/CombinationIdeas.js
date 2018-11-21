@@ -40,7 +40,6 @@ class CombinationIdeas extends React.Component {
 			allCombinationsIdeas,
 			combinationsLoaded
 		} = this.props.data.choice;
-		console.log(allCombinationsIdeas);
 		const comboIdeas = sectionListFormCombos(
 			allCombinationsIdeas.filter(name =>
 				name.Nafn.toLowerCase().includes(filterText.toLowerCase())
@@ -57,7 +56,7 @@ class CombinationIdeas extends React.Component {
 							Common combinations of names
 						</Text>
 					</View>
-					<View style={styles.commonContainer}>
+					<View style={styles.nameListContainer}>
 						<TextInput
 							placeholder={'Filter names...'}
 							style={styles.input}
@@ -70,29 +69,34 @@ class CombinationIdeas extends React.Component {
 							value={filterText}
 						/>
 						<SectionList
-							renderItem={({ item }) => (
-								<Text style={styles.commonChoiceText}>
-									{`${item.Nafn}`}
-								</Text>
+							renderItem={({ item, index }) => (
+								<View style={[
+									(index % 2 === 0) && styles.infoContainerCC,
+									(index % 2 === 1) && styles.infoContainer
+								]}>
+									<Text style={styles.text}>
+										{`${item.Nafn}`}
+									</Text>
+								</View>
 							)}
 							renderSectionHeader={({ section: { title } }) => (
-								<Text style={styles.header}>{title}</Text>
+								<Text style={styles.headerCombo}>{title}</Text>
 							)}
 							sections={comboIdeas}
 							ListEmptyComponent={
 								<ActivityIndicator size="large" />
 							}
 						/>
-						<View style={styles.aboutContainer}>
-							<TouchableOpacity
-								style={styles.btn}
-								activeOpacity={0.5}
-								onPress={() =>
-									this.props.navigation.goBack(null)
-								}>
-								<Text style={styles.btnText}>Go back</Text>
-							</TouchableOpacity>
-						</View>
+					</View>
+					<View style={styles.aboutContainer}>
+						<TouchableOpacity
+							style={styles.btn}
+							activeOpacity={0.5}
+							onPress={() =>
+								this.props.navigation.goBack(null)
+							}>
+							<Text style={styles.btnText}>Go back</Text>
+						</TouchableOpacity>
 					</View>
 				</View>
 			);
