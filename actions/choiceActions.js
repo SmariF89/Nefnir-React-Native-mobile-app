@@ -1,6 +1,5 @@
 import {
 	GET_ALL_CHOICES,
-	GET_PARENT_CHOICES,
 	ADD_IF_COMMON_CHOICE,
 	ADD_PARENT_A_CHOICE,
 	ADD_PARENT_B_CHOICE,
@@ -52,13 +51,6 @@ export const addIfCommon = choice => {
 	};
 };
 
-export const getSelectedChoices = choices => {
-	return {
-		type: GET_PARENT_CHOICES,
-		payload: choices
-	};
-};
-
 export const addParentAChoice = choice => {
 	return {
 		type: ADD_PARENT_A_CHOICE,
@@ -87,7 +79,7 @@ export const setParentBName = name => {
 	};
 };
 
-export const resetAPP = () => {
+export const resetApp = () => {
 	return {
 		type: RESET_APP,
 		payload: ''

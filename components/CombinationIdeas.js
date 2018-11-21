@@ -101,7 +101,11 @@ class CombinationIdeas extends React.Component {
 				</View>
 			);
 		} else {
-			return <ActivityIndicator size="large" />;
+			return (
+				<View style={styles.container}>
+					<ActivityIndicator size="large" />
+				</View>
+			);
 		}
 	}
 }

@@ -11,7 +11,7 @@ import {
 import {
     setParentAName,
     setParentBName,
-    resetAPP
+    resetApp
 } from "../actions/choiceActions";
 
 import styles from "../styles/styles";
@@ -41,8 +41,8 @@ class Settings extends React.Component {
     }
 
     reset() {
-        const { resetAPP } = this.props;
-        resetAPP();
+        const { resetApp } = this.props;
+        resetApp();
         this.setState({ parentAName: "", parentBName: "" });
     }
 
@@ -117,5 +117,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { setParentAName, setParentBName, resetAPP }
+    { setParentAName, setParentBName, resetApp }
 )(Settings);
