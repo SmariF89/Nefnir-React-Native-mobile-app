@@ -25,6 +25,7 @@ export const sectionListForm = data => {
 	);
 };
 
+// Combination ideas requires different form of sectioned data.
 export const sectionListFormCombos = data => {
 	const sortedAndKeyedByInital = data
 		.map(item => ({ ...item, key: item.Nafn }))

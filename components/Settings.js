@@ -87,6 +87,7 @@ class Settings extends React.Component {
                     >
                         <Text style={styles.btnText}>Reset</Text>
                     </TouchableOpacity>
+                    <Text>Warning: This will erase parent names and all choices!</Text>
                 </View>
                 <View style={styles.aboutContainer}>
                     <TouchableOpacity
@@ -94,7 +95,7 @@ class Settings extends React.Component {
                         activeOpacity={0.5}
                         onPress={() => this.props.navigation.goBack(null)}
                     >
-                        <Text style={styles.btnText}>GO BACK</Text>
+                        <Text style={styles.btnText}>Go back</Text>
                     </TouchableOpacity>
                 </View>
             </View>

@@ -6,22 +6,20 @@ import {
     TextInput,
     TouchableOpacity,
     SectionList,
-    FlatList,
     ActivityIndicator,
-    Dimensions,
-    Image
+    Dimensions
 } from 'react-native';
 import Swipeable from 'react-native-swipeable';
+import MyChoices from './MyChoices';
 import ListItem from './ListItem';
 import { sectionListForm } from '../utils/ListUtilities';
-import {
-    getAllChoices,
-    addParentAChoice,
-    addParentBChoice,
-    addIfCommon
-} from '../actions/choiceActions';
+import { getAllChoices } from '../actions/choiceActions';
 import styles from '../styles/styles';
 
+
+// In order to follow the DRY-principle we reuse this component for both parents.
+// This applies for ListItem and MyChoices as well since they are passed the parent
+// variable of this component as a prop.
 class ParentChoices extends React.Component {
     constructor(props) {
         super(props);
@@ -42,25 +40,17 @@ class ParentChoices extends React.Component {
     }
 
     render() {
-        // In order to follow the DRY-principle we reuse this component for both parents.
         // In order to distinct between parents the parent's name is sent in as a prop.
         // This parent name is in turn sent into ListItem as a prop as the distinction
-        // between parents is important there as well.
+        // between parents is important there as well. That applies for MyChoices as
+        // well.
         const parent = this.props.navigation.state.params;
 
         // filterText is the search string used when filtering the list.
         // rightContentWidth is the width of the Swipeable.
+        // popularityInfo determines if numbers that show popularity of names
+        // should be displayed or not.
         const { filterText, rightContentWidth, popularityInfo } = this.state;
-
-        // Selected choices of both parents are fetched, then the parent variable
-        // is used to distinct between which one is used.
-        const {
-            parentAChoices,
-            parentBChoices,
-            addParentAChoice,
-            addParentBChoice,
-            addIfCommon
-        } = this.props;
 
         // All of the names fetched from the state, filtered and reformed to fit
         // the SectionList's requirements.
@@ -82,87 +72,7 @@ class ParentChoices extends React.Component {
                 <View style={styles.nameListContainer}>
                     <Swipeable
                         rightButtonWidth={rightContentWidth}
-                        rightButtons={[
-                            <View style={styles.rightSwipeItem}>
-                                <Text style={styles.textAlignLeftItalic}>
-                                    Swipe right to see available choices
-                                </Text>
-                                <View>
-                                    <FlatList
-                                        ListHeaderComponent={
-                                            <Text
-                                                style={styles.textAlignLeftBold}
-                                            >
-                                                My choices{'\n'}
-                                            </Text>
-                                        }
-                                        data={
-                                            parent ==
-                                            this.props.data.choice.parentA.name
-                                                ? parentAChoices
-                                                : parentBChoices
-                                        }
-                                        renderItem={({ item }) => (
-                                            <View style={styles.myChoicesItem}>
-                                                <View
-                                                    style={styles.myChoiceName}
-                                                >
-                                                    <Text
-                                                        style={
-                                                            styles.myChoicesItemName
-                                                        }
-                                                    >
-                                                        {item}
-                                                    </Text>
-                                                </View>
-                                                <View
-                                                    style={
-                                                        styles.mychoiceRemoveName
-                                                    }
-                                                >
-                                                    <TouchableOpacity
-                                                        onPress={() => {
-                                                            parent ==
-                                                            this.props.data
-                                                                .choice.parentA
-                                                                .name
-                                                                ? addParentAChoice(
-                                                                      item
-                                                                  )
-                                                                : addParentBChoice(
-                                                                      item
-                                                                  );
-                                                            addIfCommon(item);
-                                                        }}
-                                                        style={
-                                                            styles.myChoicesItemButton
-                                                        }
-                                                    >
-                                                        <View>
-                                                            <Image
-                                                                style={
-                                                                    styles.removeImage
-                                                                }
-                                                                resizeMode={
-                                                                    'contain'
-                                                                }
-                                                                source={require('../assets/images/Flat_cross_icon.svg.png')}
-                                                            />
-                                                        </View>
-                                                    </TouchableOpacity>
-                                                </View>
-                                            </View>
-                                        )}
-                                        ListEmptyComponent={
-                                            <Text style={styles.text}>
-                                                No name chosen. Swipe back to
-                                                pick names.
-                                            </Text>
-                                        }
-                                    />
-                                </View>
-                            </View>
-                        ]}
+                        rightButtons={[<MyChoices parent={parent} />]}
                     >
                         <View style={styles.containerWrapper}>
                             <View>
@@ -211,17 +121,17 @@ class ParentChoices extends React.Component {
                                     renderSectionHeader={({
                                         section: { title }
                                     }) => (
-                                        <Text style={styles.header}>
-                                            {title}
-                                        </Text>
-                                    )}
+                                            <Text style={styles.header}>
+                                                {title}
+                                            </Text>
+                                        )}
                                     sections={choiceData}
                                     ListEmptyComponent={
                                         choicesLoaded ? (
                                             <Text>No match found</Text>
                                         ) : (
-                                            <ActivityIndicator size='large' />
-                                        )
+                                                <ActivityIndicator size='large' />
+                                            )
                                     }
                                 />
                             </View>
@@ -252,10 +162,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    {
-        getAllChoices,
-        addParentAChoice,
-        addParentBChoice,
-        addIfCommon
-    }
+    { getAllChoices }
 )(ParentChoices);

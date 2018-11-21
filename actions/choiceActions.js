@@ -13,6 +13,8 @@ import {
 
 import { RESET_APP } from '../constants/AppConstants';
 
+// This is only dispatched the first time the app is run. 
+// Dataset provided courtesy of Hagstofa Íslands
 export const getAllChoices = () => {
 	return async dispatch => {
 		try {
@@ -27,6 +29,8 @@ export const getAllChoices = () => {
 	};
 };
 
+// This is only dispatched the first time the app is run. 
+// Dataset provided courtesy of Hagstofa Íslands
 export const getAllCombinationIdeas = () => {
 	return async dispatch => {
 		try {

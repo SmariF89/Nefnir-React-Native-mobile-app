@@ -8,9 +8,11 @@ import {
     ScrollView
 } from 'react-native';
 import { LinearGradient } from 'expo';
-
 import styles from '../styles/styles';
 
+// This screen serves as a help or readme for the user. It contains
+// general information about the app and gives credit to its authors.
+// This screen is, obviously, read only.
 export default class About extends React.Component {
     constructor(props) {
         super(props);
@@ -40,7 +42,8 @@ export default class About extends React.Component {
                             </Text>
                             <Text style={styles.aboutInfo}>
                                 Nefnir is a powerful app that helps you and your
-                                partner to pick a name for your child. We are
+                                partner to pick a name for your child. It is based
+                                on a similar Icelandic app called Nefna. We are
                                 aware of how hard it can be to find a name that
                                 both parties can agree on. That's why we make it
                                 simple for you to see the names that are
@@ -99,7 +102,7 @@ export default class About extends React.Component {
                             activeOpacity={0.5}
                             onPress={() => this.props.navigation.goBack(null)}
                         >
-                            <Text style={styles.btnText}>GO BACK</Text>
+                            <Text style={styles.btnText}>Go back</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

@@ -12,6 +12,9 @@ import { sectionListFormCombos } from '../utils/ListUtilities';
 import { getAllCombinationIdeas } from '../actions/choiceActions';
 import styles from '../styles/styles';
 
+// This component displays combination ideas for names.
+// This screen is read only and data can not be modified.
+// The data can however be filtered.
 class CombinationIdeas extends React.Component {
     constructor(props) {
         super(props);
@@ -68,8 +71,7 @@ class CombinationIdeas extends React.Component {
                             renderItem={({ item, index }) => (
                                 <View
                                     style={[
-                                        index % 2 === 0 &&
-                                            styles.infoContainerCC,
+                                        index % 2 === 0 && styles.infoContainerCC,
                                         index % 2 === 1 && styles.infoContainer
                                     ]}
                                 >
@@ -103,7 +105,7 @@ class CombinationIdeas extends React.Component {
                 <View style={styles.container}>
                     <ActivityIndicator size="large" />
                 </View>
-			      );
+            );
         }
     }
 }
