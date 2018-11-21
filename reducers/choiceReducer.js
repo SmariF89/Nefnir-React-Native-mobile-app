@@ -73,7 +73,10 @@ const choiceReducer = (state = initialState, action) => {
 					commonChoices: [...newState.commonChoices, action.payload]
 				};
 			} else {
-				return state;
+				newState.commonChoices = newState.commonChoices.filter(
+					name => name != action.payload
+				);
+				return newState;
 			}
 		case ADD_PARENT_B_CHOICE:
 			if (state.parentB.choices.includes(action.payload)) {

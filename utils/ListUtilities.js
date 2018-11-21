@@ -1,6 +1,7 @@
 export const sectionListForm = data => {
 	const sortedAndKeyedByInital = data
 		.map(item => ({ ...item, key: item.Nafn }))
+		.filter(name => name.Nafn != '')
 		.sort((x, y) => (x.Nafn < y.Nafn ? -1 : 1))
 		.reduce((acc, obj) => {
 			const initial = obj.Nafn.charAt(0);

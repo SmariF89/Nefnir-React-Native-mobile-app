@@ -23,7 +23,7 @@ class ListItem extends React.Component {
 	}
 
 	render() {
-		const { item, parent, showPopInfo } = this.props;
+		const { item, index, parent, showPopInfo } = this.props;
 		const { parentA, parentB } = this.props.data.choice;
 		let isCandidate = false;
 		if (parentA.name == parent) {
@@ -34,7 +34,9 @@ class ListItem extends React.Component {
 		return (
 			<View
 				style={[
-					styles.infoContainer,
+					((index % 2 == 0) && parentA.name == parent) && styles.infoContainerZebPA,
+					((index % 2 == 0) && parentB.name == parent) && styles.infoContainerZebPB,
+					(index % 2 == 1) && styles.infoContainer,
 					isCandidate && styles.isCandidate
 				]}>
 				<TouchableOpacity
@@ -44,8 +46,8 @@ class ListItem extends React.Component {
 					<Text key={item.key} style={styles.text}>
 						{showPopInfo
 							? `${item.Nafn}\nFirst name: ${
-									item.Fjoldi1
-							  } people\nSecond name: ${item.Fjoldi2} people`
+							item.Fjoldi1
+							} people\nSecond name: ${item.Fjoldi2} people`
 							: `${item.Nafn}`}
 					</Text>
 				</TouchableOpacity>

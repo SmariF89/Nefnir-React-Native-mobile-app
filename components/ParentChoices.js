@@ -8,17 +8,18 @@ import {
 	SectionList,
 	FlatList,
 	ActivityIndicator,
-	Dimensions
+	Dimensions,
+	CheckBox
 } from 'react-native';
 import Swipeable from 'react-native-swipeable';
-import { CheckBox } from 'react-native-elements';
 
 import ListItem from './ListItem';
 import { sectionListForm } from '../utils/ListUtilities';
 import {
 	getAllChoices,
 	addParentAChoice,
-	addParentBChoice
+	addParentBChoice,
+	addIfCommon
 } from '../actions/choiceActions';
 
 import styles from '../styles/styles';
@@ -59,7 +60,8 @@ class ParentChoices extends React.Component {
 			parentAChoices,
 			parentBChoices,
 			addParentAChoice,
-			addParentBChoice
+			addParentBChoice,
+			addIfCommon
 		} = this.props;
 
 		// All of the names fetched from the state, filtered and reformed to fit
@@ -92,7 +94,7 @@ class ParentChoices extends React.Component {
 									<FlatList
 										data={
 											parent ==
-											this.props.data.choice.parentA.name
+												this.props.data.choice.parentA.name
 												? parentAChoices
 												: parentBChoices
 										}
@@ -107,14 +109,15 @@ class ParentChoices extends React.Component {
 												<TouchableOpacity
 													onPress={() => {
 														parent ==
-														this.props.data.choice
-															.parentA.name
+															this.props.data.choice
+																.parentA.name
 															? addParentAChoice(
-																	item
-															  )
+																item
+															)
 															: addParentBChoice(
-																	item
-															  );
+																item
+															);
+														addIfCommon(item);
 													}}
 													style={
 														styles.myChoicesItemButton
@@ -157,10 +160,11 @@ class ParentChoices extends React.Component {
 									value={popularityInfo}
 								/>
 							</View>
-							<View>
+							<View style={styles.listContainer}>
 								<SectionList
-									renderItem={({ item }) => (
+									renderItem={({ item, index }) => (
 										<ListItem
+											index={index}
 											item={item}
 											parent={parent}
 											showPopInfo={popularityInfo}
@@ -169,17 +173,17 @@ class ParentChoices extends React.Component {
 									renderSectionHeader={({
 										section: { title }
 									}) => (
-										<Text style={styles.header}>
-											{title}
-										</Text>
-									)}
+											<Text style={styles.header}>
+												{title}
+											</Text>
+										)}
 									sections={choiceData}
 									ListEmptyComponent={
 										choicesLoaded ? (
 											<Text>No match found</Text>
 										) : (
-											<ActivityIndicator size="large" />
-										)
+												<ActivityIndicator size="large" />
+											)
 									}
 								/>
 							</View>
@@ -212,6 +216,7 @@ export default connect(
 	{
 		getAllChoices,
 		addParentAChoice,
-		addParentBChoice
+		addParentBChoice,
+		addIfCommon
 	}
 )(ParentChoices);
