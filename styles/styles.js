@@ -27,7 +27,7 @@ export default StyleSheet.create({
         width: "80%"
     },
     nameListContainer: {
-        height: "70%",
+        height: "60%",
         width: "80%"
     },
     aboutContainer: {
@@ -55,6 +55,12 @@ export default StyleSheet.create({
         flex: 1,
         flexDirection: "row",
         paddingBottom: 16
+    },
+    infoContainerCC: {
+        backgroundColor: '#d9dde0',
+        paddingLeft: 8,
+        justifyContent: "space-around",
+        flex: 1
     },
     infoContainer: {
         paddingLeft: 8,
@@ -103,6 +109,24 @@ export default StyleSheet.create({
         borderRadius: 6,
         backgroundColor: "#D97E00"
     },
+    btnPopularity: {
+        flex: 2,
+        height: 40,
+        borderWidth: 1,
+        borderBottomColor: "#3E2400",
+        borderTopColor: "#FFD8A4",
+        borderRightColor: "#FFD8A4",
+        borderRadius: 6,
+        backgroundColor: "#D97E00",
+        marginLeft: 6,
+        marginRight: 6
+    },
+    btnPopularityText: {
+        textAlign: "center",
+        fontSize: 12,
+        color: "white",
+        padding: 4
+    },
     rightSwipeItem: {
         flex: 1,
         paddingLeft: 20
@@ -149,6 +173,17 @@ export default StyleSheet.create({
         textAlign: "left",
         fontSize: 18
     },
+    textAlignLeftBold: {
+        textAlign: "left",
+        fontSize: 18,
+        fontWeight: 'bold'
+    },
+    textAlignLeftItalic: {
+        textAlign: "left",
+        fontSize: 18,
+        fontStyle: 'italic',
+        marginBottom: 10
+    },
     btnText: {
         textAlign: "center",
         fontSize: 18,
@@ -164,6 +199,10 @@ export default StyleSheet.create({
     },
     header: {
         fontSize: 28
+    },
+    headerCombo: {
+        fontSize: 24,
+        fontStyle: 'italic'
     },
     aboutTextAlignCenter: {
         textAlign: "center",
@@ -209,5 +248,19 @@ export default StyleSheet.create({
         textAlign: "center",
         fontSize: 28,
         marginTop: 200
+    },
+    myChoicesItem: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        borderBottomColor: "rgba(0, 0, 255, 0.3)",
+        borderBottomWidth: 2
+    },
+    myChoicesItemName: {
+        fontSize: 18
+    },
+    mychoiceRemoveName: {},
+    removeImage: {
+        height: 18,
+        width: 18
     }
 });

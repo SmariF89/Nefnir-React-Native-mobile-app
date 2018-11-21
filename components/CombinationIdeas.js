@@ -69,13 +69,18 @@ class CombinationIdeas extends React.Component {
 							value={filterText}
 						/>
 						<SectionList
-							renderItem={({ item }) => (
-								<Text style={styles.commonChoiceText}>
-									{`${item.Nafn}`}
-								</Text>
+							renderItem={({ item, index }) => (
+								<View style={[
+									(index % 2 === 0) && styles.infoContainerCC,
+									(index % 2 === 1) && styles.infoContainer
+								]}>
+									<Text style={styles.text}>
+										{`${item.Nafn}`}
+									</Text>
+								</View>
 							)}
 							renderSectionHeader={({ section: { title } }) => (
-								<Text style={styles.header}>{title}</Text>
+								<Text style={styles.headerCombo}>{title}</Text>
 							)}
 							sections={comboIdeas}
 							ListEmptyComponent={

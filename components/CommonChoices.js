@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet,
   FlatList
 } from 'react-native'
 import { connect } from 'react-redux'
@@ -36,8 +35,15 @@ class CommonChoices extends React.Component {
         <View style={styles.commonContainer}>
           <FlatList
             data={choices}
-            renderItem={({ item }) => (
-              <Text style={styles.textAlignLeft}>{item}</Text>
+            renderItem={({ item, index }) => (
+              <View style={[
+                (index % 2 === 0) && styles.infoContainerCC,
+                (index % 2 === 1) && styles.infoContainer
+              ]}>
+                <Text style={styles.text}>
+                  {`${item}`}
+                </Text>
+              </View>
             )}
             ListEmptyComponent={<Text>You have not selected any common names</Text>}
           />

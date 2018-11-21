@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 import {
 	View,
 	Text,
@@ -9,28 +9,30 @@ import {
 	FlatList,
 	ActivityIndicator,
 	Dimensions,
-	CheckBox
-} from 'react-native';
-import Swipeable from 'react-native-swipeable';
+	CheckBox,
+	Image
+} from "react-native";
+import Swipeable from "react-native-swipeable";
+//import { CheckBox } from 'react-native-elements'
 
-import ListItem from './ListItem';
-import { sectionListForm } from '../utils/ListUtilities';
+import ListItem from "./ListItem";
+import { sectionListForm } from "../utils/ListUtilities";
 import {
 	getAllChoices,
 	addParentAChoice,
 	addParentBChoice,
 	addIfCommon
-} from '../actions/choiceActions';
+} from "../actions/choiceActions";
 
-import styles from '../styles/styles';
+import styles from "../styles/styles";
 
 class ParentChoices extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			filterText: '',
+			filterText: "",
 			popularityInfo: false,
-			rightContentWidth: Dimensions.get('window').width
+			rightContentWidth: Dimensions.get("window").width
 		};
 	}
 
@@ -79,19 +81,19 @@ class ParentChoices extends React.Component {
 					<Text style={styles.textAlignCenterBig}>
 						{parent}
 						's choices
-					</Text>
+                    </Text>
 				</View>
 				<View style={styles.nameListContainer}>
 					<Swipeable
 						rightButtonWidth={rightContentWidth}
 						rightButtons={[
-							<View style={[styles.rightSwipeItem]}>
-								<Text>
-									Swipe right to see awailable choices
-								</Text>
-								<Text>My choices</Text>
+							<View style={styles.rightSwipeItem}>
+								<Text style={styles.textAlignLeftItalic}>
+									Swipe right to see available choices
+                                </Text>
 								<View>
 									<FlatList
+										ListHeaderComponent={<Text style={styles.textAlignLeftBold}>My choices{'\n'}</Text>}
 										data={
 											parent ==
 												this.props.data.choice.parentA.name
@@ -100,47 +102,72 @@ class ParentChoices extends React.Component {
 										}
 										renderItem={({ item }) => (
 											<View style={styles.myChoicesItem}>
-												<Text
+												<View
+													style={styles.myChoiceName}
+												>
+													<Text
+														style={
+															styles.myChoicesItemName
+														}
+													>
+														{item}
+													</Text>
+												</View>
+												<View
 													style={
-														styles.myChoicesItemName
-													}>
-													{item}
-												</Text>
-												<TouchableOpacity
-													onPress={() => {
-														parent ==
-															this.props.data.choice
-																.parentA.name
-															? addParentAChoice(
-																item
-															)
-															: addParentBChoice(
-																item
-															);
-														addIfCommon(item);
-													}}
-													style={
-														styles.myChoicesItemButton
-													}>
-													<Text>remove</Text>
-												</TouchableOpacity>
+														styles.mychoiceRemoveName
+													}
+												>
+													<TouchableOpacity
+														onPress={() => {
+															parent ==
+																this.props.data
+																	.choice.parentA
+																	.name
+																? addParentAChoice(
+																	item
+																)
+																: addParentBChoice(
+																	item
+																);
+															addIfCommon(item);
+														}}
+														style={
+															styles.myChoicesItemButton
+														}
+													>
+														<View>
+															<Image
+																style={
+																	styles.removeImage
+																}
+																resizeMode={
+																	"contain"
+																}
+																source={require("../assets/images/Flat_cross_icon.svg.png")}
+															/>
+														</View>
+													</TouchableOpacity>
+												</View>
 											</View>
 										)}
+										ListEmptyComponent={<Text style={styles.text}>No name chosen. Swipe back to pick names.</Text>}
 									/>
 								</View>
 							</View>
-						]}>
+						]}
+					>
 						<View style={styles.containerWrapper}>
 							<View>
-								<Text style={styles.swipeInfo}>
-									Swipe left to see current choices
-								</Text>
+								<Text style={styles.textAlignLeftItalic}>
+									Swipe left to view your choices
+                                </Text>
 							</View>
 							<View style={styles.choiceControlContainer}>
 								<TextInput
-									placeholder={'Filter names...'}
+									placeholder={"Filter names..."}
 									style={styles.inputMain}
-									underlineColorAndroid={'rgba(0,0,0,0)'}
+									underlineColorAndroid={"rgba(0,0,0,0)"}
 									onChangeText={text =>
 										this.setState({
 											filterText: text
@@ -148,17 +175,19 @@ class ParentChoices extends React.Component {
 									}
 									value={filterText}
 								/>
-								<CheckBox
-									title={'Show popularity'}
-									size={200}
-									style={styles.check}
-									onValueChange={() =>
+								<TouchableOpacity
+									style={styles.btnPopularity}
+									activeOpacity={0.5}
+									onPress={() =>
 										this.setState({
 											popularityInfo: !popularityInfo
 										})
 									}
-									value={popularityInfo}
-								/>
+								>
+									<Text
+										style={styles.btnPopularityText}
+									>{popularityInfo ? 'Hide popularity' : 'Show popularity'}</Text>
+								</TouchableOpacity>
 							</View>
 							<View style={styles.listContainer}>
 								<SectionList
@@ -194,7 +223,8 @@ class ParentChoices extends React.Component {
 					<TouchableOpacity
 						style={styles.btn}
 						activeOpacity={0.5}
-						onPress={() => this.props.navigation.goBack(null)}>
+						onPress={() => this.props.navigation.goBack(null)}
+					>
 						<Text style={styles.btnText}>Go back</Text>
 					</TouchableOpacity>
 				</View>
